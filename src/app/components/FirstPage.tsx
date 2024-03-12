@@ -4,7 +4,7 @@ import Nav from "./Nav";
 const FirstPage: React.FC = () => {
   return (
       <section className="bg-black h-screen w-screen text-center ">
-        <Nav />
+        <Nav menuCartShow={false} />
 
         
 
