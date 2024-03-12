@@ -30,5 +30,4 @@ const FirstPage: React.FC = () => {
     </section>
   );
 };
-
 export default FirstPage;
