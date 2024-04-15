@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## listados_de_entidades
 
-First, run the development server:
+# shoes **ED**
+- shoe_id **(PK)** : number
+- shoe_model **(FK)**: string
+- line_id **(FK)** : string
+- categorie_id **(FK)**: string
+- shoe_price: float
+- shoe_availability: boolean
+- shoe_photo : blob
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### name **EC**
+- name_id **(PK)**
+- name_description
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### categorie **EC**
+- categorie_id **(PK)**
+- categorie_name
+- categorie_type
+- categorie_description
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+### line **EC**
+- line_id **(PK)**
+- line_description
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Relaciones
+1. Muchos **name** _pertenece_ a una **categorie** (1 a M)
+2. Una **categorie** _pertenece_ a una **line** (1 a 1)
+3. Muchas **shoes** _pertenece_ a una **lines** (M a 1)
+3. Muchas **shoes** _pertenece_ a una **categorie** (M a 1)
 
-## Deploy on Vercel
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Modelo Entidad-Relacion:
+![Modelo-Entidad-Relacion](Diagrama%20Entidad-Relacion%20Shoes.png)
+-----------------------------------------------------------------------
+<br>
+<br>
+<br>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+# Modelo Relacional:
+![Modelo-Relacional](./modelo%20relacional%20BD.drawio.png)
+-----------------------------------------------------------------------
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Reglas de negocio (CRUD)
+
+## shoes
+- Crear un nuevo registro de una nueva zapatilla
+<!-- Esta regla es fundamental para permitir la adición de nuevos productos al catálogo. -->
+
+- Leer el registro de un(s) zapatilla(s)
+<!--  La capacidad de leer la información de una zapatilla es esencial para mostrar los detalles del producto a los clientes. -->
+
+- Actualizar status de disponibilidad
+<!-- Es importante poder actualizar el estado de disponibilidad de una zapatilla para reflejar su disponibilidad actual en el inventario. -->
+
+- Eliminar una zapatilla(s) dada una condicion en particular
+<!-- La capacidad de eliminar zapatillas puede ser necesaria en ciertas situaciones, como productos descontinuados -->
+
+-----------------------------------------------------------------------
+### name
+- Crear un nuevo registro de un nuevo nombre
+- Leer registro de nombre(s)
+- Eliminar el nombre(s) dada una condicion en particular
+-----------------------------------------------------------------------
+
+### categorie
+- Crear un nuevo registro de una nueva(s) categoria(s)
+- Traer todos los registros de las diferentes categorias
+<!-- Esta regla permite obtener una lista de todas las categorías disponibles en el sistema. Es útil para mostrar las opciones de categorías a los usuarios y para organizar el catálogo de productos. -->
+- Eliminar una categoría(s) dada una condicion en particular
+- Leer todos los registros de la(s) diferente(s) categoria(s)
+<!-- esta regla permite acceder a la información detallada de todas las categorías. Es útil para mostrar información adicional sobre las categorías, como descripciones o imágenes. -->
+-----------------------------------------------------------------------
+
+
