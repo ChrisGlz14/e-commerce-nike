@@ -42,7 +42,7 @@
 <br>
 
 # Modelo Entidad-Relacion:
-![Modelo-Entidad-Relacion](Diagrama%20Entidad-Relacion%20Shoes.png)
+![Modelo-Entidad-Relacion](./src/DB-Normalizacion/shoe_Diagrama%20Entidad-Relacion%20Shoes.png)
 -----------------------------------------------------------------------
 <br>
 <br>
@@ -50,7 +50,7 @@
 
 
 # Modelo Relacional:
-![Modelo-Relacional](./modelo%20relacional%20BD.drawio.png)
+![Modelo-Relacional](./src/DB-Normalizacion/shoe_modelo%20relacional%20BD.drawio.png)
 -----------------------------------------------------------------------
 <br>
 <br>
