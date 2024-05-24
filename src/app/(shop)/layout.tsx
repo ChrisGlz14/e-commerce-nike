@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import TopMenu from "@/components/ui/top-menu/TopMenu";
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
 
@@ -6,17 +7,27 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Nike E-Commerce",
-  description: "Proyecto con Next.js",
+  description: "Tienda de zapatos de marca Nike E-Commerce",
 };
 
-export default function RootLayout({
+export default function ShopLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en" className="overflow-x-hidden">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        
+      <TopMenu menuCartShow={false} />
+      
+        {children}
+        
+      
+      </body>
+
+      
+      
     </html>
   );
 }

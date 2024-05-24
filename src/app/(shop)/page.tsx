@@ -1,12 +1,14 @@
-import FirstPage from "../../components/FirstPage";
-import Shoes from "../../components/Shoes";
-import SideCartSection from "../../components/SideCartSection";
+import FirstPage from "../../components/ui/title/FirstPage";
+import Shoes from "../../components/products/products";
 
 export default function Home() {
   return (
     <>
-    
-      <FirstPage />
+      
+      <FirstPage 
+      title = "NIKE"
+      subtitle = "SHOP"
+      />
       <Shoes />
     </>
   );
