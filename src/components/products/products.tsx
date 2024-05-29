@@ -70,7 +70,7 @@ const Products = () => {
     <div className='grid grid-cols-2 grid-rows-2 items-center gap-12'>
       
     
-    <Link href="/shirts" className="col-start-1 row-span-3 justify-self-end self-baseline h-[600px] relative">
+    <Link href="/products/shirts" className="col-start-1 row-span-3 justify-self-end self-baseline h-[600px] relative">
       <motion.div   initial="offscreen"
                     whileInView="onscreen2"
                     variants={productVariants}
@@ -81,7 +81,7 @@ const Products = () => {
         alt="remera"
         width={600}
         height={600}
-        className='object-cover h-[605px] hover:transition-all hover:scale-105'
+        className='object-cover h-[605px]  transition-transform duration-300 hover:scale-105'
         />
       </motion.div>
     </Link>  
@@ -91,13 +91,13 @@ const Products = () => {
                  variants={productVariants}
                  onViewportLeave={handleViewPort}>
                  
-    <Link href="/accessories" className=" relative items-center self-end h-[300px]">
+    <Link href="/products/accessories" className=" relative items-center self-end h-[300px]">
         <Image 
         src="/mochilanike.webp"
         alt="mochila"
         width={500} 
         height={500}
-        className='hover:transition-all hover:scale-105'
+        className='transition-transform duration-300 hover:scale-110'
         />
     </Link>
 
@@ -109,13 +109,13 @@ const Products = () => {
                 onViewportLeave={handleViewPort}
                 >
 
-    <Link href="/shoes" className="items-center relative self-start h-[300px]">
+    <Link href="/products/shoes" className="items-center relative self-start h-[300px]">
         <Image 
         src="/zapatillasnike.webp"
         alt="shoes"
         width={500}
         height={500}
-        className='hover:transition-all hover:scale-105'
+        className='transition-transform duration-300 hover:scale-110'
         />
     </Link>
     </motion.div>

@@ -1,5 +1,9 @@
 import FirstPage from "../../components/ui/title/FirstPage";
-import Shoes from "../../components/products/products";
+import ProductGrid from "@/components/products/product-grid/ProductGrid";
+import { initialData } from "@/seeds/seed";
+import Products from "../../components/products/products";
+
+
 
 export default function Home() {
   return (
@@ -9,7 +13,9 @@ export default function Home() {
       title = "NIKE"
       subtitle = "SHOP"
       />
-      <Shoes />
+      <Products />
+
+      
     </>
   );
 }
