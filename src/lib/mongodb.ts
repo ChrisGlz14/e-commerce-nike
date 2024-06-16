@@ -1,7 +1,9 @@
-// lib/mongoose.js
 import mongoose from 'mongoose';
+import { MongoClient } from 'mongodb';
 
-const MONGODB_URI = process.env.MONGODB_URI;
+
+
+const MONGODB_URI = process.env.MONGODB_URI as string;
 
 if (!MONGODB_URI) {
   throw new Error(
@@ -9,36 +11,30 @@ if (!MONGODB_URI) {
   );
 }
 
-/**
- * Global variable is used to ensure that we only create a single instance of the MongoClient across hot reloads in development.
- */
-let cached = global.mongoose;
+let cachedClient: MongoClient | null = null;
+let cachedDb: typeof mongoose | null = null;
 
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
-}
-
-async function connectToDatabase() {
-  if (cached.conn) {
-    return cached.conn;
+export async function connectToDataBase () {
+  if (cachedClient) {
+    return cachedClient
   }
 
-  if (!cached.promise) {
-    const opts = {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-    };
-
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose;
-    });
-  }
-  cached.conn = await cached.promise;
-  return cached.conn;
+  const client = new MongoClient(MONGODB_URI)
+  await client.connect();
+  cachedClient = client;
+  return client
 }
 
-export default connectToDatabase;
+export async function dbConnect() {
+  if (cachedDb) {
+    return cachedDb
+  }
+ 
+  await mongoose.connect(MONGODB_URI,{
+    dbName: 'shoes-nike',
+  });
+  cachedDb = mongoose;
+  return mongoose;
 
+}
 

@@ -6,9 +6,9 @@ export interface Product {
     price: number;
     sizes: ValidSizes[];
     slug: string;
+    type: string;
     tags: string[];
     title: string;
-    type: string;
     gender: 'men'|'women'|'kid'|'unisex';
 }
 

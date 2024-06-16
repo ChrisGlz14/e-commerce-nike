@@ -1,28 +1,35 @@
-import { shoes } from "./shoes";
+import { NextResponse } from "next/server";
+import { shoesSeed } from "./seedShoes";
+
+
 
 export async function GET() {
-    return Response.json(shoes)
+    return NextResponse.json(shoesSeed)
 }
 
-interface Shoe {
-    id: number
-    name: string
-}
-
-export async function POST(request: Request) {
-    const shoe = await request.json();
+export async function POST(req : Request) {
+    const shoe = await req.json();
     const newShoe = {
-        id: shoes.length + 1,
-        shoe : shoe.name,
         price : shoe.price,
-        image: shoe.image       
-    } 
+        images: shoe.image,
+        description : shoe.description,
+        slug : shoe.slug,
+        category : shoe.category,
+        gender : shoe.gender,
+        type : shoe.type,
+        inStock : shoe.inStock,
+        sizes : shoe.sizes,
+        tags : shoe.tags,
+        title : shoe.title
+    };
 
-    // shoes.push(newShoe)
-    // return new Response(JSON.stringify(newShoe),{
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     status : 200
-    // })
+    
+    try {
+    shoesSeed.products.push(newShoe);
+    return NextResponse.json(newShoe, { status: 200 });
+    } catch (error) {
+    return NextResponse.json({ error }, { status: 500 });    
+    }
+
+
 }
