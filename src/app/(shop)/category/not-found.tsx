@@ -2,8 +2,12 @@ import PageNotFound from "@/components/ui/not-found/PageNotFound";
 
 
 
-export default function() {
+function NotFound() {
     return (
         <PageNotFound />
     );
 }
+
+NotFound.displayName = 'PageNotFound';
+
+export default NotFound;

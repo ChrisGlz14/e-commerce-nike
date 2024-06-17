@@ -6,7 +6,7 @@ interface props {
     }
 }
 
-export default function({params}:props) {
+export default function CategoryPage({params}:props) {
 
     const {id} = params
 

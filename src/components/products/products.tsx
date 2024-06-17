@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
@@ -48,19 +48,29 @@ const lirysVariants: Variants = {
 }
 
 const fetchShoes = async () => {
-  const res = await fetch('/api/shoes');
+  const baseURL = typeof window !== 'undefined' ? 'https://e-commerce-nike.vercel.app': '';
+  const res = await fetch(`${baseURL}/api/shoes`);
   const data = await res.json();
-  return console.log(data)
+  return data
 }
-fetchShoes()
+
 type ProductsProps = {
   shoes: Array<any>; 
 }
 
+
 const Products: React.FC<ProductsProps> = ({ shoes }) => {
-  const handleViewPort = (leave: any) => {
+  const [fetchedShoes, setFetchedShoes] = React.useState(shoes || []);
+
+  useEffect(() => {
+    if(!shoes|| shoes.length === 0) {
+      fetchShoes().then(data => setFetchedShoes(data))
+    }
+  }, [shoes])
+  
+ const handleViewPort = ( leave:any ) => {
     leave
-  }
+ }
 
   return (
     <main className="overflow-x-auto h-screen pt-28 overflow-y-hidden">
