@@ -1,4 +1,5 @@
 "use client";
+import { useMenuSideState } from "@/store/ui/ui-store";
 import Link from "next/link";
 import { CiSearch } from "react-icons/ci";
 import { IoBag } from "react-icons/io5";
@@ -7,10 +8,11 @@ import { SiNike } from "react-icons/si";
 
 const Nav: React.FC = () => {
 
+  const openSideMenu = useMenuSideState( state => state.openSideMenu)
 
   return (
     <>
-      <header className="bg-transparent relative  md:py-4 md:px-10 items-center w-full justify-between">
+      <header className="bg-transparent relative  md:py-4 md:px-10 items-center w-full justify-between z-10">
 
         <nav className="flex md:justify-center md:items-center flex-grow">
 
@@ -46,7 +48,8 @@ const Nav: React.FC = () => {
             
             </Link>
 
-            <button className="p-2 rounded-md transition-all hover:bg-black hover:bg-opacity-40  flex items-center justify-center m-auto">
+            <button className="p-2 rounded-md transition-all hover:bg-black hover:bg-opacity-40  flex items-center justify-center m-auto"
+            onClick={openSideMenu}>
               Menu
             </button>
           </div>

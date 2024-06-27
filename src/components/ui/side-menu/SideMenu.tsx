@@ -2,31 +2,50 @@
 import Link from 'next/link'
 import React from 'react'
 import { IoCloseOutline, IoPersonOutline, IoSearchOutline, IoTicketOutline, IoLogInOutline, IoShirtOutline, IoPeopleOutline } from 'react-icons/io5'
+import { useMenuSideState } from '@/store/ui/ui-store'
+import clsx from 'clsx'
+
 
 
 const SideMenu : React.FC = () => {
+
+ const menuIsOpen= useMenuSideState( state => state.menuIsOpen) 
+ const openSideMenu = useMenuSideState( state => state.openSideMenu)
+ const closeSideMenu = useMenuSideState( state => state.closeSideMenu)
   return (
     <div>
       {/* Background Black */}
-      <div className='fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30'>
-
+      {menuIsOpen &&(
+        <div className='fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30'>
       </div>
+
+      )}
+
 
       {/* Background Blur */}
-      <div className='fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-blur-sm backdrop-filter'>
+      {menuIsOpen && (
+        <div
+        onClick={closeSideMenu}
+        className={clsx('fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-blur-sm backdrop-filter')}>
 
       </div>
+      )}
+
 
       {/* Side Menu */}
 
       <nav
       //hacer efecto de desplazamiento 
-      className='fixed p-5 right-0 top-0 w-[500px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-300'>
-
+      className={clsx(
+        "fixed p-5 right-0 top-0 w-[500px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-300",
+          {
+            "translate-x-full": !menuIsOpen,
+          })}>
+        {/* Close Icon */}
         <IoCloseOutline 
         size={50} 
         className='absolute top-5 right-5 cursor-pointer text-black'
-        onClick={() => console.log("click")}
+        onClick={ closeSideMenu }
         />
         {/* Input */}
         <div className='relative mt-14'>
