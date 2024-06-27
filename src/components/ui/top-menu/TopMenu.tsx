@@ -1,22 +1,16 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
-import SideCartSection from '../../SideCartSection';
 import { CiSearch } from "react-icons/ci";
 import { IoBag } from "react-icons/io5";
 import { SiNike } from "react-icons/si";
 
-interface menuCartShow {
-  menuCartShow: boolean
-}
 
-const Nav: React.FC<menuCartShow> = () => {
+const Nav: React.FC = () => {
 
-  const [menuCartShow, setMenuCartShow] = useState(false)
 
   return (
     <>
-      <header className="bg-transparent relative z-50 md:py-4 md:px-10 items-center w-full justify-between">
+      <header className="bg-transparent relative  md:py-4 md:px-10 items-center w-full justify-between">
 
         <nav className="flex md:justify-center md:items-center flex-grow">
 
@@ -52,12 +46,10 @@ const Nav: React.FC<menuCartShow> = () => {
             
             </Link>
 
-            <button className="p-2 rounded-md transition-all hover:bg-black hover:bg-opacity-40  flex items-center justify-center m-auto" onClick={() => setMenuCartShow(!menuCartShow)}>
+            <button className="p-2 rounded-md transition-all hover:bg-black hover:bg-opacity-40  flex items-center justify-center m-auto">
               Menu
             </button>
           </div>
-          
-        <SideCartSection menuCartShow={menuCartShow} setMenuCartShow={setMenuCartShow} />
 
 
 

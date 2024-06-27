@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import TopMenu from "@/components/ui/top-menu/TopMenu";
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
+import SideMenu from "@/components/ui/side-menu/SideMenu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,8 +20,8 @@ export default function ShopLayout({
     <html lang="en" className="overflow-x-hidden">
       <body className={inter.className}>
         
-      <TopMenu menuCartShow={false} />
-      
+      <TopMenu />
+      <SideMenu  />
         {children}
         
       

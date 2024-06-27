@@ -1,11 +1,14 @@
 'use client'
 import { Product } from '@/interfaces'
 import Image from 'next/image'
+import Link from 'next/link';
 import React, { useState } from 'react'
 
 interface Props {
   product: Product;
 }
+
+
 
 const ProductGridItem= ({product }: Props) => {
 
@@ -17,6 +20,7 @@ const ProductGridItem= ({product }: Props) => {
 
   return (
     <div className='overflow-hidden flex flex-col m-3'>
+      <Link href={`/api/shoes/${product.slug}`}>
         <Image 
                 src={`${baseUrl}${mouseOverChangeImg}`}
                 alt={product.title}
@@ -27,8 +31,12 @@ const ProductGridItem= ({product }: Props) => {
                 className='w-full h-full
                  object-cover'
                 />
+      
+      </Link>
                 <div className='inline-block'>
+                  <Link href={`/api/shoes/${product.slug}`}>
                   <span className='hover:text-blue-500 cursor-pointer inline-block m-0 p-0'>{product.title}</span>
+                  </Link>
                 </div>
         <span>${product.price}</span>
                 
