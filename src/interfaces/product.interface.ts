@@ -9,6 +9,7 @@ export interface Product {
     type: string;
     tags: string[];
     title: string;
+    sale: boolean;
     gender: 'men'|'women'|'kid'|'unisex';
 }
 

@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
@@ -85,7 +85,7 @@ const Products: React.FC<ProductsProps> = ({ shoes }) => {
       <div className='grid grid-cols-2 grid-rows-2 items-center gap-12'>
         {shoes.map(shoe => (
           <React.Fragment key={shoe.id}>
-          <Link key={shoe.id} href={`/api/shoes/${shoe.id}`} className="col-start-1 row-span-3 justify-self-end self-baseline h-[600px] relative">
+          <Link key={shoe.id} href={`/product/${shoe.slug}`} className="col-start-1 row-span-3 justify-self-end self-baseline h-[600px] relative">
             <motion.div
               initial="offscreen"
               whileInView="onscreen2"
@@ -103,7 +103,7 @@ const Products: React.FC<ProductsProps> = ({ shoes }) => {
           </Link>
 
           {/* 2th img */}  
-          <Link href={`/api/shoes/${shoe.id}`}>
+          <Link href={`/product/${shoe.slug}`}>
           <motion.div
           initial="offscreen"
           whileInView="onscreen2"
@@ -120,7 +120,7 @@ const Products: React.FC<ProductsProps> = ({ shoes }) => {
           </motion.div>
           </Link>
 
-          <Link href={`/api/shoes/${shoe.id}`}>
+          <Link href={`/product/${shoe.slug}`}>
           <motion.div
           initial="offscreen"
           whileInView="onscreen2"

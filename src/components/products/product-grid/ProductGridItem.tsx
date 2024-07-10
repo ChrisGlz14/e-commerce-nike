@@ -20,7 +20,7 @@ const ProductGridItem= ({product }: Props) => {
 
   return (
     <div className='overflow-hidden flex flex-col m-3'>
-      <Link href={`/api/shoes/${product.slug}`}>
+      <Link href={`/product/${product.slug}`}>
         <Image 
                 src={`${baseUrl}${mouseOverChangeImg}`}
                 alt={product.title}
@@ -34,7 +34,7 @@ const ProductGridItem= ({product }: Props) => {
       
       </Link>
                 <div className='inline-block'>
-                  <Link href={`/api/shoes/${product.slug}`}>
+                  <Link href={`/product/${product.slug}`}>
                   <span className='hover:text-blue-500 cursor-pointer inline-block m-0 p-0'>{product.title}</span>
                   </Link>
                 </div>
