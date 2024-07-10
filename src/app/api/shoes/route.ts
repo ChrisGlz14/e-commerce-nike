@@ -18,7 +18,8 @@ export async function POST(req : Request) {
         gender : shoe.gender,
         type : shoe.type,
         inStock : shoe.inStock,
-        sizes : shoe.sizes,
+        size : shoe.sizes,
+        sale: shoe.sale,
         tags : shoe.tags,
         title : shoe.title
     };
