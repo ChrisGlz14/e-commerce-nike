@@ -1,51 +1,52 @@
 'use client'
-import Link from 'next/link'
 import React from 'react'
+import { useCartSideState } from '@/store/ui/ui-store'
 import { IoCloseOutline, IoPersonOutline, IoSearchOutline, IoTicketOutline, IoLogInOutline, IoShirtOutline, IoPeopleOutline } from 'react-icons/io5'
-import { useMenuSideState } from '@/store/ui/ui-store'
-import clsx from 'clsx'
+import Link from 'next/link'
+import clsx from 'clsx';
+
+  
+const SideCartSection: React.FC = () => {
+
+  const cartIsOpen = useCartSideState(state => state.cartIsOpen)
+  const openSideCart = useCartSideState(state => state.openCart)
+  const closeSideCart = useCartSideState(state => state.closeCart)
 
 
-
-const SideMenu : React.FC = () => {
-
- const menuIsOpen= useMenuSideState( state => state.menuIsOpen) 
- const openSideMenu = useMenuSideState( state => state.openSideMenu)
- const closeSideMenu = useMenuSideState( state => state.closeSideMenu)
 
   return (
     <div>
       {/* Background Black */}
-      {menuIsOpen &&(
-        <div className='fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30'>
+    {cartIsOpen && (
+      <div  className='fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30'>
       </div>
       )}
+
 
 
       {/* Background Blur */}
-      {menuIsOpen && (
+      {cartIsOpen && (
         <div
-        onClick={closeSideMenu}
-        className={clsx('fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-blur-sm backdrop-filter')}>
-
-      </div>
+        onClick={closeSideCart}
+        className={clsx(
+          "fixed p-5 right-0 top-0 w-[500px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-300")}>
+        </div>
+        
       )}
 
-
-      {/* Side Menu */}
-
-      <nav
+        {/* CART MENU */}
+        <nav
       //hacer efecto de desplazamiento 
       className={clsx(
         `fixed p-5 right-0 top-0 w-[500px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-300`,
           {
-            "translate-x-full": !menuIsOpen,
+            "translate-x-full": !cartIsOpen,
           })}>
         {/* Close Icon */}
         <IoCloseOutline 
         size={50} 
         className='absolute top-5 right-5 cursor-pointer text-black'
-        onClick={ closeSideMenu }
+        onClick={  closeSideCart }
         />
         {/* Input */}
         <div className='relative mt-14'>
@@ -127,9 +128,9 @@ const SideMenu : React.FC = () => {
 
 
       </nav>
-
     </div>
+    // Background SideCart 
   )
 }
 
-export default SideMenu
+export default SideCartSection
