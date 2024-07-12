@@ -2,6 +2,7 @@
 import { shoesSeed } from '@/app/api/shoes/seedShoes'
 import { Product, Category } from "@/interfaces";
 import ProductGrid from "@/components/products/product-grid/ProductGrid";
+import { titleFont } from '@/app/config/fonts';
 
 
 interface Props {
@@ -31,8 +32,7 @@ export default function CategoryPage({params}:Props) {
 
     return (
         <>
-        <h1 className="text-3xl text-center mb-2">{`Articulos ${labels[id]}`}</h1>
-
+        <h1 className={`${titleFont.className} text-3xl text-center mb-2`}>{`Articulos ${labels[id]}`} </h1>
         <ProductGrid 
         products={products}
         />
