@@ -1,8 +1,11 @@
+'use client'
 import { notFound } from "next/navigation";
 import SizeSelector from "@/components/product/size-selector/SizeSelector";
 import { shoesSeed } from "@/app/api/shoes/seedShoes";
 import { titleFont } from "@/app/config/fonts";
 import Image from "next/image";
+import QuantitySelector from "@/components/product/quantity-selector/QuantitySelector";
+;
 
 interface Props {
     params: {
@@ -23,6 +26,10 @@ export default function ProductPage({params}:Props) {
         notFound()
     }
 
+    if (!product) {
+        notFound();
+    }
+
     return (
     <>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:mt-9">
@@ -34,18 +41,20 @@ export default function ProductPage({params}:Props) {
                 </div>
 
                 {/* Details */}
-            <div className="grid col-span-1 px-5">
+            <div className="grid col-span-1 place-self-center px-5">
                     {/* title */}
-                    <h1 className={`text-2xl lg:mt-0 lg:text-3xl antialiased ${titleFont.className}`}>{product?.title}</h1>
+                    <h1 className={`text-2xl lg:mt-0 lg:text-3xl antialiased mt-6 ${titleFont.className}`}>{product?.title}</h1>
                     {/* Size */}
-                    <p className="text-xl lg:text-2xl ">{product?.size.map((size, index)=> <span key={index}>{size}     </span>)}</p>
+                    <SizeSelector selectedSize={product.sizes[0]} availableSizes={product?.sizes ?? []}/>
                     {/* Price */}
-                    <h2 className="text-lg lg:text-xl font-bold">${product?.price}</h2>
+                    <h2 className="text-lg lg:text-xl font-bold mt-6">${product?.price}</h2>
                     {/* Description */}
-                        <h3 className="text-lg font-bold">Descripcion</h3>
-                        <p className="text-sm">{product?.description}</p>
+                        <h3 className="text-lg font-bold mt-6">Descripcion</h3>
+                        <p className="text-sm mt-6">{product?.description}</p>
                     {/* after of all we can add a size selector and effect button */}
-                    <div className="place-self-end w-full">
+                    {/* Quantity btn */}
+                    <QuantitySelector />
+                    <div className="place-self-end w-full mt-6">
                         <button className="bg-white text-black rounded-full p-4 font-bold w-full">Agregar al carrito</button> 
                     </div>
             </div>

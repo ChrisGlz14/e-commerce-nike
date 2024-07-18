@@ -4,17 +4,17 @@ export interface Product {
     images: string[];
     inStock: number;
     price: number;
-    size: Size[];
+    sizes: Size[] | undefined;
     slug: string;
-    type: string;
+    type: ValidTypes;
     tags: string[];
     title: string;
     sale: boolean;
-    gender: 'men'|'women'|'kid'|'unisex';
+    gender: Category;
 }
 
 export type Category = 'men' | 'women' | 'kid' | 'unisex';
 
-export type Size = 'XS'|'S'|'M'|'L'|'XL'|'XXL'|'XXXL';
+export type Size = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL' ;
 
 export type ValidTypes = 'shirt' | 'shoes' | 'accesories'
