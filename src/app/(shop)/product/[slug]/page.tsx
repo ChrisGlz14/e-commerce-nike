@@ -5,6 +5,7 @@ import { shoesSeed } from "@/app/api/shoes/seedShoes";
 import { titleFont } from "@/app/config/fonts";
 import Image from "next/image";
 import QuantitySelector from "@/components/product/quantity-selector/QuantitySelector";
+import { ProductMobileSlideShow, ProductSlideShow } from "@/components";
 ;
 
 interface Props {
@@ -32,18 +33,25 @@ export default function ProductPage({params}:Props) {
 
     return (
     <>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:mt-9">
+        <div className="grid grid-cols-1 md:grid-cols-3 w-full md:w-9/12 mx-auto lg:mt-9  sm:mx-auto ">
                 {/* Slider */}
                 {/* <div className="">hola aca va un carrusel de imagenes</div> */}
 
+                {/* Mobile SlideShow */}
+
+                <div className="m-2 md:col-span-2 mb-4 lg:mb-0 place-self-center w-full">
+                    <ProductMobileSlideShow title={product.title} images={product.images} classname="block lg:hidden" />
+                </div>
+
+                {/* Desktop SlideShow */}
                 <div className="m-2 md:col-span-2 md:w-[700px] mb-4 lg:mb-0 place-self-center">
-                    <Image className="h-auto w-full rounded-md" src={link + product?.images[0] ?? 'not found'} alt={product?.title ?? 'not found'} width={300} height={300}/>
+                   <ProductSlideShow title={product.title} images={product.images} classname="h-[500px] hidden lg:block"/>
                 </div>
 
                 {/* Details */}
-            <div className="grid col-span-1 place-self-center px-5">
+            <div className="grid col-span-1 place-self-center justify-center items-center px-4 md:px-14">
                     {/* title */}
-                    <h1 className={`text-2xl lg:mt-0 lg:text-3xl antialiased mt-6 ${titleFont.className}`}>{product?.title}</h1>
+                    <h1 className={`text-2xl md:text-3xl lg:mt-0 lg:text-3xl antialiased mt-6 ${titleFont.className}`}>{product?.title}</h1>
                     {/* Size */}
                     <SizeSelector selectedSize={product.sizes[0]} availableSizes={product?.sizes ?? []}/>
                     {/* Price */}
@@ -53,7 +61,7 @@ export default function ProductPage({params}:Props) {
                         <p className="text-sm mt-6">{product?.description}</p>
                     {/* after of all we can add a size selector and effect button */}
                     {/* Quantity btn */}
-                    <QuantitySelector />
+                    <QuantitySelector quantity={1} />
                     <div className="place-self-end w-full mt-6">
                         <button className="bg-white text-black rounded-full p-4 font-bold w-full">Agregar al carrito</button> 
                     </div>

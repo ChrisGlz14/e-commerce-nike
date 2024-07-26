@@ -79,6 +79,7 @@ export const shoesSeed = {
       images: [
         "809347-1200-1200?width=1200&height=1200&aspect=true",
         "815250-1200-1200?width=1200&height=1200&aspect=true",
+        "907744-1200-1200?width=1200&height=1200&aspect=true"
       ],
       inStock: 6,
       price: 134.999,
