@@ -1,8 +1,8 @@
 'use client'
 import Link from 'next/link'
 import React from 'react'
-import { IoCloseOutline, IoPersonOutline, IoSearchOutline, IoTicketOutline, IoLogInOutline, IoShirtOutline, IoPeopleOutline } from 'react-icons/io5'
 import { useMenuSideState } from '@/store/ui/ui-store'
+import { IoCloseOutline, IoPersonOutline, IoSearchOutline, IoTicketOutline, IoLogInOutline, IoShirtOutline, IoPeopleOutline } from 'react-icons/io5'
 import clsx from 'clsx'
 
 
@@ -10,8 +10,8 @@ import clsx from 'clsx'
 const SideMenu : React.FC = () => {
 
  const menuIsOpen= useMenuSideState( state => state.menuIsOpen) 
- const openSideMenu = useMenuSideState( state => state.openSideMenu)
  const closeSideMenu = useMenuSideState( state => state.closeSideMenu)
+
 
   return (
     <div>
@@ -65,7 +65,7 @@ const SideMenu : React.FC = () => {
         >
 
           <IoPersonOutline size={30} className='text-black'/>
-          <span className='ml-3 text-xl text-black'>Perfil</span>
+          <span className='ml-3 text-xl text-black'>Perfil MENU</span>
 
         </Link>
         

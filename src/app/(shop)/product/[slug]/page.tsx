@@ -53,7 +53,7 @@ export default function ProductPage({params}:Props) {
                     {/* title */}
                     <h1 className={`text-2xl md:text-3xl lg:mt-0 lg:text-3xl antialiased mt-6 ${titleFont.className}`}>{product?.title}</h1>
                     {/* Size */}
-                    <SizeSelector selectedSize={product.sizes[0]} availableSizes={product?.sizes ?? []}/>
+                    <SizeSelector selectedSize={product?.availableSizes[0]} availableSizes={product.availableSizes} allSizes={product.allSizes}/>
                     {/* Price */}
                     <h2 className="text-lg lg:text-xl font-bold mt-6">${product?.price}</h2>
                     {/* Description */}

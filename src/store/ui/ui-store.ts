@@ -7,12 +7,6 @@ interface menuSideState {
     closeSideMenu: () => void
     }
 
-interface cartSideState {
-    cartIsOpen: boolean,
-    openCart: () => void
-    closeCart: () => void
-}
-
 // Store state
 export const useMenuSideState = create<menuSideState>()((set) => ({
   menuIsOpen: false,
@@ -20,9 +14,3 @@ export const useMenuSideState = create<menuSideState>()((set) => ({
   closeSideMenu: () => set({menuIsOpen: false}),
 }))
 
-// Cart state
-export const useCartSideState = create<cartSideState>()((set) => ({
-  cartIsOpen: false,
-  openCart: () => set({cartIsOpen: true}),
-  closeCart: () => set({cartIsOpen: false}),
-}))

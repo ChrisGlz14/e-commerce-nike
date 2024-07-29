@@ -42,7 +42,7 @@ export const ProductMobileSlideShow = ({images, title, classname}: Props) => {
       >
         {images.map((image) => (
           <SwiperSlide key={image} className='swaper-slide-mobile'>
-            <Image src={url + image} className='object-fill ' alt={title} width={500} height={600} />
+            <Image src={url + image} className='object-fill' alt={title} width={500} height={600} />
           </SwiperSlide>
         ))}
       </Swiper>

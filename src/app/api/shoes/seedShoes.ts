@@ -11,7 +11,10 @@ export const shoesSeed = {
       ],
       inStock: 7,
       price: 75.999,
-      sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+      allSizes : ["4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13"],
+      availableSizes : [
+        "4", "4.5", "6", "6.5", "7"
+      ],
       slug: "mens_chill_crew_neck_sweatshirt",
       type: "shirt",
       tags: ["sweatshirt"],
@@ -29,7 +32,10 @@ export const shoesSeed = {
       ],
       inStock: 5,
       price: 139.999,
-      sizes: ["XS", "S", "M", "XL", "XXL"],
+      allSizes : ["4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13"],
+      availableSizes : [
+        "4",  "5.5", "6", "6.5", "7"
+      ],
       slug: "men_quilted_shirt_jacket",
       type: "shirt",
       tags: ["jacket"],
@@ -48,7 +54,11 @@ export const shoesSeed = {
       ],
       inStock: 10,
       price: 135.999,
-      sizes: ["S", "M", "L", "XL", "XXL"],
+      allSizes : ["4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13"],
+      availableSizes:[
+        "6.5", "7", "7.5", "8", "8.5", "9", "9.5", 
+        "10"
+      ],
       slug: "men_raven_lightweight_zip_up_bomber_jacket",
       type: "shirt",
       tags: ["shirt"],
@@ -65,7 +75,10 @@ export const shoesSeed = {
       ],
       inStock: 10,
       price: 159.999,
-      sizes: ["S", "M", "L", "XL", "XXL"],
+      allSizes : ["4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13"],
+      availableSizes : [
+        "4", "4.5", "5", "5.5", "6", "13"
+      ],
       slug: "Nike_Swoosh_1",
       type: "shoe",
       tags: ["shoe"],
@@ -79,11 +92,14 @@ export const shoesSeed = {
       images: [
         "809347-1200-1200?width=1200&height=1200&aspect=true",
         "815250-1200-1200?width=1200&height=1200&aspect=true",
-        "907744-1200-1200?width=1200&height=1200&aspect=true"
+        "907744-1200-1200?width=1200&height=1200&aspect=true",
       ],
       inStock: 6,
       price: 134.999,
-      sizes: ["S", "M", "L", "XL"],
+      allSizes : ["4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13"],
+      availableSizes : [
+        "4", "4.5", "5", "5.5", "6", "13"
+      ],
       slug: "nike-swoosh-2",
       type: "shoe",
       tags: ["shoe"],
@@ -101,7 +117,10 @@ export const shoesSeed = {
       ],
       inStock: 9,
       price: 59.999,
-      sizes: ["S", "M", "L", "XL"],
+      allSizes : ["4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13"],
+      availableSizes : [
+        "4", "4.5", "5", "11.5", "12", "12.5", "13"
+      ],
       slug: "Nike Sunray Adjust 6",
       type: "shoe",
       tags: ["shoe"],

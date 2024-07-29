@@ -1,16 +1,16 @@
 "use client";
 import { useMenuSideState } from "@/store/ui/ui-store";
-import { useCartSideState } from "@/store/ui/ui-store";
 import Link from "next/link";
 import { CiSearch } from "react-icons/ci";
 import { IoBag } from "react-icons/io5";
 import { SiNike } from "react-icons/si";
 
 
+
 const Nav: React.FC = () => {
 
-  const openSideMenu = useMenuSideState( state => state.openSideMenu)
-  const openSideCart = useCartSideState( state => state.openCart)
+
+  const openSideMenu = useMenuSideState(state => state.openSideMenu)
 
   return (
     <>
@@ -37,16 +37,13 @@ const Nav: React.FC = () => {
             <Link href="/search" className="justify-center items-center flex"> 
               <CiSearch className="search-icon text-2xl"/>
             </Link>
-            <button className="justify-center items-center flex" onClick={openSideCart}>
-              <div className="relative">
-              <span className="absolute text-white text-xs rounded-full px-1 -right-2 -top-2 font-bold bg-blue-800">
-                2
-              </span>
-              <IoBag className="search-icon text-2xl cursor-pointer" />
-
+              <div className="relative flex justify-center items-center"> 
+                <span className="absolute text-white text-xs rounded-full px-1 -right-2 top-2 font-bold bg-blue-800">
+                  4
+                </span>
+                <IoBag className="search-icon text-2xl cursor-pointer" />
               </div>
             
-            </button>
 
             <button className="p-2 rounded-md transition-all hover:bg-black hover:bg-opacity-40  flex items-center justify-center m-auto"
             onClick={openSideMenu}>
