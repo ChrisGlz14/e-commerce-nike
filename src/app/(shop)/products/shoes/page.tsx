@@ -1,14 +1,23 @@
-
-import { shoesSeed } from '@/app/api/shoes/seedShoes'
 import ProductGrid from '@/components/products/product-grid/ProductGrid'
 import React from 'react'
 import { Product } from '@/interfaces';
+import { a } from 'framer-motion/m';
 
 
+async function getProducts(): Promise<Product[]> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`, {
+    cache: "no-store"
+  }); 
 
-const products: Product[] = shoesSeed.products;
+  if (!res.ok) {
+    throw new Error("Failed to fetch products");
+  }
 
-const Shoes = () => {
+  return res.json();
+}
+
+const Shoes = async () => {
+  const products = await getProducts();
   return (
     <ProductGrid products={products}/>
   )

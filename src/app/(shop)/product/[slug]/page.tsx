@@ -1,12 +1,10 @@
-'use client'
 import { notFound } from "next/navigation";
 import SizeSelector from "@/components/product/size-selector/SizeSelector";
-import { shoesSeed } from "@/app/api/shoes/seedShoes";
 import { titleFont } from "@/app/config/fonts";
-import Image from "next/image";
 import QuantitySelector from "@/components/product/quantity-selector/QuantitySelector";
 import { ProductMobileSlideShow, ProductSlideShow } from "@/components";
-;
+import { Product } from "@/interfaces/product.interface";
+
 
 interface Props {
     params: {
@@ -16,16 +14,30 @@ interface Props {
 
 }
 
-export default function ProductPage({params}:Props) {
-    const link = "https://nikearprod.vtexassets.com/arquivos/ids/"
+async function getProduct(slug: string): Promise<Product | null> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${slug}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) throw new Error("Error al traer productos");
+
+  console.log("No se hizo el fetch")
+  return res.json();
+}
+
+export default async function ProductPage({params}:Props) {
+    
     const {slug} = params;
-    const product = shoesSeed.products.find((product)=>product.slug === slug)
+    
+    //const product = products.find((product)=>product.slug === slug)
 
 
-    if (!params.slug) {
+    if (!slug) {
 
         notFound()
     }
+
+    const product = await getProduct(slug);
 
     if (!product) {
         notFound();

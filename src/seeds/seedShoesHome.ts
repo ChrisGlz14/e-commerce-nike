@@ -8,7 +8,7 @@ export const shoesInitialData = [
     },
     {
         id: 2,
-        title: 'Air Max',
+        title: 'Air Max v4',
         price: 200,
         image: 'https://nikearprod.vtexassets.com/assets/vtex.file-manager-graphql/images/833d7a9c-b99a-4cc0-a4fa-cc0484068fcd___47613a7ba2f0ccdfb47ac884b8872fa6.jpg',
     },

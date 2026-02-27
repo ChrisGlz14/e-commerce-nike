@@ -25,13 +25,13 @@ export async function connectToDataBase () {
   return client
 }
 
-export async function dbConnect() {
+export async function connectDB() {
   if (cachedDb) {
     return cachedDb
   }
  
   await mongoose.connect(MONGODB_URI,{
-    dbName: 'shoes-nike',
+    dbName: 'ecommerceDB',
   });
   cachedDb = mongoose;
   return mongoose;

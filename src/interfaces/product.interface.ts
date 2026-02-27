@@ -3,7 +3,7 @@ export interface Product {
     // id: string;
     images: string[];
     description: string;
-    inStock: number;
+    inStock: ProductVariant[];
     price: number;
     allSizes: Size[];
     availableSizes: Size[];
@@ -11,12 +11,29 @@ export interface Product {
     type: ValidTypes;
     tags: string[];
     title: string;
-    sale: boolean;
+    sale: SaleInfo;
     gender: Category;
+}
+
+export interface ProductVariant {
+  size: Size;
+  stock: number;
+}
+
+export interface SaleInfo {
+  isOnSale: boolean;
+  discountPercentage?: number;
+  salePrice?: number;
 }
 
 export type Category = 'men' | 'women' | 'kid' | 'unisex';
 
 export type Size = "4" | "4.5" | "5" | "5.5" | "6" | "6.5" | "7" | "7.5" | "8" | "8.5" | "9" | "9.5" | "10" | "10.5" | "11" | "11.5" | "12" | "12.5" | "13";
 
-export type ValidTypes = 'shirt' | 'shoes' | 'accesories'
+export type ValidTypes =
+  | 'shirt'
+  | 'shoes'
+  | 'pants'
+  | 'hoodie'
+  | 'jacket'
+  | 'accesories';

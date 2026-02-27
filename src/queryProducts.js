@@ -1,4 +1,4 @@
-import faunadb from 'faunadb';
+
 
 const q = faunadb.query;
 const faunaClient = new faunadb.Client({ secret: 'fnAFirM4VoAAQsg9zVhCJxolBkenl8q3Zb9AIjJ6'});

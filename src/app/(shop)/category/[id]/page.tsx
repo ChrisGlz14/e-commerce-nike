@@ -1,8 +1,8 @@
 'use client'
-import { shoesSeed } from '@/app/api/shoes/seedShoes'
 import { Product, Category } from "@/interfaces";
 import ProductGrid from "@/components/products/product-grid/ProductGrid";
 import { titleFont } from '@/app/config/fonts';
+import { useEffect, useState } from "react";
 
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
     }
 }
 
-const products: Product[] = shoesSeed.products;
+
 const link= 'https://nikearprod.vtexassets.com/arquivos/ids/'
 
 const labels:Record<Category, string> = {
@@ -24,10 +24,29 @@ const labels:Record<Category, string> = {
 
 
 
-export default function CategoryPage({params}:Props) {
+export default function CategoryPage({ params }: Props) {
 
-    const {id} = params
-    const products = shoesSeed.products.filter((product)=>product.gender === id)
+  const { id } = params;
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products?gender=${id}`);
+        const data = await res.json();
+        setProducts(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getProducts();
+  }, [id]);
+
+  if (loading) return <p className="text-center">Cargando...</p>;
 
 
     return (
