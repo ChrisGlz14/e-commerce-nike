@@ -15,7 +15,7 @@ interface Props {
 }
 
 async function getProduct(slug: string): Promise<Product | null> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${slug}`, {
+  const res = await fetch(`/api/products/${slug}`, {
     cache: "no-store",
   });
 
