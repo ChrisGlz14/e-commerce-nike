@@ -49,8 +49,8 @@ const lirysVariants: Variants = {
 
 const fetchShoes = async () => {
   const res = await fetch("/api/shoes");
-  if (!res.ok) throw new Error('Failed to fetch shoes');
-  return res.json();
+  const data = await res.json();
+  return data
 }
 
 type ProductsProps = {
