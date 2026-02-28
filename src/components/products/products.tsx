@@ -84,7 +84,7 @@ const Products: React.FC<ProductsProps> = ({ shoes }) => {
       <div className='grid grid-cols-2 grid-rows-2 items-center gap-12'>
         {shoes.map(shoe => (
           <React.Fragment key={shoe.id}>
-          <Link key={shoe.id} href={`/product/${shoe.slug}`} className="col-start-1 row-span-3 justify-self-end self-baseline h-[600px] relative">
+          <Link key={shoe.id} href={`api/product/${shoe.slug}`} className="col-start-1 row-span-3 justify-self-end self-baseline h-[600px] relative">
             <motion.div
               initial="offscreen"
               whileInView="onscreen2"
