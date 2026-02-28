@@ -48,10 +48,9 @@ const lirysVariants: Variants = {
 }
 
 const fetchShoes = async () => {
-  const baseURL = typeof window !== 'undefined' ? 'https://e-commerce-nike.vercel.app': '';
-  const res = await fetch(`${baseURL}/api/shoes`);
-  const data = await res.json();
-  return data
+  const res = await fetch("/api/shoes");
+  if (!res.ok) throw new Error('Failed to fetch shoes');
+  return res.json();
 }
 
 type ProductsProps = {

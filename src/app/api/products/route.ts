@@ -12,13 +12,11 @@ export async function GET() {
       { status: 500 } 
     );
   }
-
-  
 }
 
-export async function POST(request: Request) {
-      await connectDB()
-      const data = await request.json()
-      const produts = await Product.create( data )
-      return NextResponse.json(produts)
-  }
+// export async function POST(request: Request) {
+//       await connectDB()
+//       const data = await request.json()
+//       const produts = await Product.create( data )
+//       return NextResponse.json(produts)
+//   }
