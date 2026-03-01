@@ -2,7 +2,7 @@ import { Product } from "@/interfaces";
 
 export async function getProducts(): Promise<Product[]> {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`, {
+    const res = await fetch("/api/products", {
       cache: "no-store"
     });
 
