@@ -58,18 +58,20 @@ type ProductsProps = {
 }
 
 
-const Products: React.FC<ProductsProps> = ({ shoes }) => {
-  const [fetchedShoes, setFetchedShoes] = React.useState(shoes || []);
+const Products: React.FC<ProductsProps> = ({ shoes: initialShoes }) => {
+  // 1. Usamos un nombre claro y siempre inicializamos como array
+  const [shoes, setShoes] = React.useState(initialShoes || []);
 
   useEffect(() => {
-    if(!shoes|| shoes.length === 0) {
-      fetchShoes().then(data => setFetchedShoes(data))
+    // Si no vinieron datos del server, los buscamos
+    if (!initialShoes || initialShoes.length === 0) {
+      fetchShoes().then(data => {
+        // IMPORTANTE: Asegúrate de que 'data' sea el array
+        // Si tu API devuelve { products: [...] }, usa data.products
+        setShoes(Array.isArray(data) ? data : []);
+      });
     }
-  }, [shoes])
-  
- const handleViewPort = ( leave:any ) => {
-    leave
- }
+  }, [initialShoes]);
 
   return (
     <main className="overflow-x-auto h-screen pt-28 overflow-y-hidden">
@@ -89,7 +91,7 @@ const Products: React.FC<ProductsProps> = ({ shoes }) => {
               initial="offscreen"
               whileInView="onscreen2"
               variants={productVariants}
-              onViewportLeave={handleViewPort}
+              
             >
               <Image 
                 src={shoesInitialData[0].image}
@@ -107,7 +109,7 @@ const Products: React.FC<ProductsProps> = ({ shoes }) => {
           initial="offscreen"
           whileInView="onscreen2"
           variants={productVariants}
-          onViewportLeave={handleViewPort}
+          
           >
             <Image 
             src={shoesInitialData[1].image}
@@ -124,7 +126,7 @@ const Products: React.FC<ProductsProps> = ({ shoes }) => {
           initial="offscreen"
           whileInView="onscreen2"
           variants={productVariants}
-          onViewportLeave={handleViewPort}
+          
           >
             <Image 
             src={shoesInitialData[2].image}

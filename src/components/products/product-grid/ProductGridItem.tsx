@@ -25,7 +25,7 @@ const ProductGridItem= ({product }: Props) => {
                 alt={product.title}
                 width={500}
                 height={500}
-                onMouseLeave={() => setMouseOverChangeImg(product.images[0])}
+                onMouseLeave={() => setMouseOverChangeImg(product.images[0] || "/placeholder.png")}
                 className='w-full h-full
                  object-cover'
                 />
