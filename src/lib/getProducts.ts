@@ -1,8 +1,17 @@
-import { connectDB} from '@/lib/mongodb';
-import { Product } from '@/models/product';
+import { Product } from "@/interfaces";
 
-export async function getProducts() {
-  await connectDB();
-  const products = await Product.find().lean();
-  return JSON.parse(JSON.stringify(products));
+export async function getProducts(): Promise<Product[]> {
+  try {
+    const res = await fetch("/api/products", {
+      cache: "no-store"
+    });
+
+    if (!res.ok) return []; // Retornar array sin nada
+    
+    const data = await res.json();
+    return Array.isArray(data) ? data : []; 
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }

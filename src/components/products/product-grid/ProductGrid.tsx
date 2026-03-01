@@ -8,9 +8,12 @@ interface Props {
     products:Product[];
 }
 
-const ProductGrid = ({products}:Props) => {
+const ProductGrid = ({ products = [] }: Props) => { // 👈 Valor por defecto
 
-  
+  //evitamos que se rompa la paginas
+  if (!Array.isArray(products)) {
+    return <p>No se pudieron cargar los productos.</p>;
+  }
 
   return (
     <motion.div 
@@ -24,10 +27,8 @@ const ProductGrid = ({products}:Props) => {
     
     className='grid grid-cols-2 lg:grid-cols-3  mb-10 lg:gap-7'>
         {
-            products.map(product => (
-              <div key={product.slug}>
+            products.map(product => (            
                <ProductGridItem key={product.slug} product={product}></ProductGridItem>
-              </div>
             )
         )}
     </motion.div>

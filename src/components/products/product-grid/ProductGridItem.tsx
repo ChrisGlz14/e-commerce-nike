@@ -13,22 +13,19 @@ interface Props {
 const ProductGridItem= ({product }: Props) => {
 
   const [mouseOverChangeImg, setMouseOverChangeImg] = useState(
-    product.images?.[0] || "components/img/placeholder.png"
+    product.images?.[0] || "/placeholder.png"
   );
 
-
-
-  const baseUrl = 'https://nikearprod.vtexassets.com/assets/'
 
   return (
     <div className='overflow-hidden flex flex-col m-3'>
       <Link href={`/product/${product.slug}`}>
         <Image 
-                src={`${baseUrl}${mouseOverChangeImg}`}
+                src={mouseOverChangeImg}
                 alt={product.title}
                 width={500}
                 height={500}
-                onMouseLeave={() => setMouseOverChangeImg(product.images[0])}
+                onMouseLeave={() => setMouseOverChangeImg(product.images[0] || "/placeholder.png")}
                 className='w-full h-full
                  object-cover'
                 />

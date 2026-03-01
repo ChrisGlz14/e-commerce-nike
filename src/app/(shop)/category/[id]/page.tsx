@@ -33,7 +33,7 @@ export default function CategoryPage({ params }: Props) {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products?gender=${id}`);
+        const res = await fetch(`/api/products?gender=${id}`);
         const data = await res.json();
         setProducts(data);
       } catch (error) {

@@ -25,6 +25,7 @@ interface Props {
     title: string;
     classname?: string;
 }
+//A futuro seguir con ESTO!
 export const ProductSlideShow = ({images, title, classname}: Props) => {
     const url = "https://nikearprod.vtexassets.com/arquivos/ids/"
 

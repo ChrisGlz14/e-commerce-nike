@@ -1,7 +1,6 @@
 import ProductGrid from '@/components/products/product-grid/ProductGrid'
 import React from 'react'
 import { Product } from '@/interfaces';
-import { a } from 'framer-motion/m';
 
 
 async function getProducts(): Promise<Product[]> {
