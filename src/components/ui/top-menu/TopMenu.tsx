@@ -34,7 +34,7 @@ const Nav: React.FC = () => {
 
           {/* Cart section btn */}
           <div className="flex p-4 justify-center gap-2">
-            <Link href="/search" className="justify-center items-center flex"> 
+            <Link href="" className="justify-center items-center flex"> 
               <CiSearch className="search-icon text-2xl"/>
             </Link>
               <div className="relative flex justify-center items-center"> 
