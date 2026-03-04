@@ -1,7 +1,7 @@
 
 
 const q = faunadb.query;
-const faunaClient = new faunadb.Client({ secret: 'fnAFirM4VoAAQsg9zVhCJxolBkenl8q3Zb9AIjJ6'});
+const faunaClient = new faunadb.Client({ secret: process.env.FAUNA_SECRET_KEY });
 
 const fetchProducts =  async () => {
   try {
