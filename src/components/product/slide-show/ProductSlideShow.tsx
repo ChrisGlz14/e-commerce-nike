@@ -27,7 +27,7 @@ interface Props {
 }
 //A futuro seguir con ESTO!
 export const ProductSlideShow = ({images, title, classname}: Props) => {
-    const url = "https://nikearprod.vtexassets.com/arquivos/ids/"
+    
 
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperObjetc>();
     
@@ -49,7 +49,7 @@ export const ProductSlideShow = ({images, title, classname}: Props) => {
       >
         {images.map((image) => (
           <SwiperSlide key={image}>
-            <Image src={url + image} className='rounded-lg object-cover' alt={title} width={1200} height={1200} />
+            <Image src={image} className='rounded-lg object-cover' alt={title} width={1200} height={1200} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -65,7 +65,7 @@ export const ProductSlideShow = ({images, title, classname}: Props) => {
       >
         {images.map((image) => (
           <SwiperSlide key={image}>
-            <Image src={url + image} className='rounded-lg object-cover' alt={title} width={200} height={200} />
+            <Image src={image} className='rounded-lg object-cover' alt={title} width={200} height={200} />
           </SwiperSlide>
         ))}
       </Swiper>

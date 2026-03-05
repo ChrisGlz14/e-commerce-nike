@@ -12,7 +12,6 @@ interface Props {
 }
 
 
-const link= 'https://nikearprod.vtexassets.com/arquivos/ids/'
 
 const labels:Record<Category, string> = {
 

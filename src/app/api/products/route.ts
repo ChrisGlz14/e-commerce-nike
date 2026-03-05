@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import { Product } from "@/models/product";
+
+
 export async function GET() {
   try {
 
@@ -17,6 +19,9 @@ export async function GET() {
     );
   }
 }
+
+
+
 
 // export async function POST(request: Request) {
 //       await connectDB()

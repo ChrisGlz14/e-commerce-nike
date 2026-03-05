@@ -13,9 +13,7 @@ import './slideshow.css'
 import { Autoplay, FreeMode, Navigation, Pagination} from 'swiper/modules';
 import Image from 'next/image';
 
-
-
-
+// const url = process.env
 
 interface Props {
     images: string[];
@@ -23,12 +21,11 @@ interface Props {
     classname?: string;
 }
 export const ProductMobileSlideShow = ({images, title, classname}: Props) => {
-    const url = "https://nikearprod.vtexassets.com/arquivos/ids/"
     
     return (
     <div className={classname}>
 
-<Swiper
+      <Swiper
         style={{
           width: '100vw',
           height: '500px',
@@ -40,11 +37,13 @@ export const ProductMobileSlideShow = ({images, title, classname}: Props) => {
         modules={[FreeMode, Navigation, Autoplay, Pagination]}
         className="mySwiper2"
       >
+        {/* ACA hay que solucionar lo de las imagenes */}
+        
         {images.map((image) => (
           <SwiperSlide key={image} className='swaper-slide-mobile'>
-            <Image src={url + image} className='object-fill' alt={title} width={500} height={600} />
+            <Image src={image} className='object-fill' alt={title} width={500} height={600} />
           </SwiperSlide>
-        ))}
+        ))} 
       </Swiper>
     </div>
         )

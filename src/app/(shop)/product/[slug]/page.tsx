@@ -6,66 +6,79 @@ import { ProductMobileSlideShow, ProductSlideShow } from "@/components";
 import { Product } from "@/interfaces/product.interface";
 
 
+const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
 interface Props {
-    params: {
+     params: {
         slug : string
         title: string
     }
 
-}
+    product : {
+        title: string;
+        description: string;
+        slug : string;
+        price: number;
+    }
 
-async function getProduct(slug: string): Promise<Product | null> {
-  const res = await fetch(`/api/products/${slug}`, {
-    cache: "no-store",
-  });
+}
+async function getProduct(product : Product): Promise<Product | null> {
+  const res = await fetch(`${baseUrl}/api/products/${product.slug}`, {
+      cache: "no-store",
+    });
 
   if (!res.ok) throw new Error("Error al traer productos");
+        console.log(res)
 
   console.log("No se hizo el fetch")
   return res.json();
 }
 
-export default async function ProductPage({params}:Props) {
+export default async function ProductPage({ params }: Props) {
+    const { slug } = params; 
     
-    const {slug} = params;
-    
-    //const product = products.find((product)=>product.slug === slug)
-
+   
 
     if (!slug) {
-
+        console.log("Error no se encontro el slug")
         notFound()
     }
 
-    const product = await getProduct(slug);
+    const product = await getProduct({ slug } as Product);
 
     if (!product) {
+        console.log("Error no se encontro el producto")
         notFound();
     }
 
     return (
     <>
+    {/* TENGO 1500 problemas con el sliideShow */}
         <div className="grid grid-cols-1 md:grid-cols-3 w-full md:w-9/12 mx-auto lg:mt-9  sm:mx-auto ">
                 {/* Slider */}
-                {/* <div className="">hola aca va un carrusel de imagenes</div> */}
+                <div className="">hola aca va un carrusel de imagenes</div>
 
                 {/* Mobile SlideShow */}
 
                 <div className="m-2 md:col-span-2 mb-4 lg:mb-0 place-self-center w-full">
                     <ProductMobileSlideShow title={product.title} images={product.images} classname="block lg:hidden" />
-                </div>
+                </div> 
 
                 {/* Desktop SlideShow */}
                 <div className="m-2 md:col-span-2 md:w-[700px] mb-4 lg:mb-0 place-self-center">
                    <ProductSlideShow title={product.title} images={product.images} classname="h-[500px] hidden lg:block"/>
                 </div>
 
+
+
+
+
                 {/* Details */}
             <div className="grid col-span-1 place-self-center justify-center items-center px-4 md:px-14">
                     {/* title */}
                     <h1 className={`text-2xl md:text-3xl lg:mt-0 lg:text-3xl antialiased mt-6 ${titleFont.className}`}>{product?.title}</h1>
                     {/* Size */}
-                    <SizeSelector selectedSize={product?.availableSizes[0]} availableSizes={product.availableSizes} allSizes={product.allSizes}/>
+                    {/* <SizeSelector selectedSize={product?.availableSizes]} availableSizes={product.availableSizes} allSizes={product.allSizes}/> */}
                     {/* Price */}
                     <h2 className="text-lg lg:text-xl font-bold mt-6">${product?.price}</h2>
                     {/* Description */}
