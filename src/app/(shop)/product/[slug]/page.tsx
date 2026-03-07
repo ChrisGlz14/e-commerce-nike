@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { notFound } from "next/navigation";
 import SizeSelector from "@/components/product/size-selector/SizeSelector";
 import { titleFont } from "@/app/config/fonts";

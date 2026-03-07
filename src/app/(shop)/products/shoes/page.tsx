@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import ProductGrid from '@/components/products/product-grid/ProductGrid'
 import React from 'react'
 import { Product } from '@/interfaces';
