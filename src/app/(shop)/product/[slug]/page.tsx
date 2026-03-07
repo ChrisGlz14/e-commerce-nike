@@ -13,17 +13,11 @@ interface Props {
         slug : string
         title: string
     }
-
-    product : {
-        title: string;
-        description: string;
-        slug : string;
-        price: number;
-    }
-
 }
-async function getProduct(product : Product): Promise<Product | null> {
-  const res = await fetch(`${baseUrl}/api/products/${product.slug}`, {
+
+
+async function getProduct(slug: string): Promise<Product | null> {
+  const res = await fetch(`${baseUrl}/api/products/${slug}`, {
       cache: "no-store",
     });
 
@@ -44,7 +38,7 @@ export default async function ProductPage({ params }: Props) {
         notFound()
     }
 
-    const product = await getProduct({ slug } as Product);
+    const product = await getProduct(slug);
 
     if (!product) {
         console.log("Error no se encontro el producto")
