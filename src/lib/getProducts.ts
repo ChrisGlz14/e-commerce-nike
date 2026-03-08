@@ -2,7 +2,12 @@ import { Product } from "@/interfaces";
 
 export async function getProducts(): Promise<Product[]> {
   try {
-    const res = await fetch("/api/products", {
+    const isServer = typeof window === 'undefined';
+    const baseUrl = isServer 
+      ? (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000') 
+      : '';
+
+    const res = await fetch(`${baseUrl}/api/products`, {
       cache: "no-store"
     });
 
@@ -12,6 +17,8 @@ export async function getProducts(): Promise<Product[]> {
     return Array.isArray(data) ? data : []; 
   } catch (error) {
     console.error(error);
+
+    console.error("Error en getProducts:", error);
     return [];
   }
 }

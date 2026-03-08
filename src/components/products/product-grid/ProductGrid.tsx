@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { Product } from '@/interfaces';
-import ProductGridItem from './ProductGridItem';
+import {ProductGridItem} from './ProductGridItem';
 import { motion } from 'framer-motion';
 
 interface Props {
@@ -35,4 +35,4 @@ const ProductGrid = ({ products = [] }: Props) => { // 👈 Valor por defecto
   )
 }
 
-export default ProductGrid
+export { ProductGrid };

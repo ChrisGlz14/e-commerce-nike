@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { notFound } from "next/navigation";
-import SizeSelector from "@/components/product/size-selector/SizeSelector";
+import {SizeSelector} from "@/components/product/size-selector/SizeSelector";
 import { titleFont } from "@/app/config/fonts";
 import QuantitySelector from "@/components/product/quantity-selector/QuantitySelector";
 import { ProductMobileSlideShow, ProductSlideShow } from "@/components";
@@ -24,8 +24,6 @@ async function getProduct(slug: string): Promise<Product | null> {
 
   if (!res.ok) throw new Error("Error al traer productos");
         console.log(res)
-
-  console.log("No se hizo el fetch")
   return res.json();
 }
 
