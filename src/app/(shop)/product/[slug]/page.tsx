@@ -5,6 +5,8 @@ import { titleFont } from "@/app/config/fonts";
 import QuantitySelector from "@/components/product/quantity-selector/QuantitySelector";
 import { ProductMobileSlideShow, ProductSlideShow } from "@/components";
 import { Product } from "@/interfaces/product.interface";
+import { connectDB } from "@/lib/mongodb";
+import { models } from "mongoose";
 
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -17,32 +19,53 @@ interface Props {
 }
 
 
-async function getProduct(slug: string): Promise<Product | null> {
-  const res = await fetch(`${baseUrl}/api/products/${slug}`, {
-      cache: "no-store",
-    });
+export default async function ProductPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
 
-  if (!res.ok) throw new Error("Error al traer productos");
-        console.log(res)
-  return res.json();
-}
+  // 1. Conexión directa (Usa la MONGODB_URI que ya tienes en Vercel)
+  await connectDB();
 
-export default async function ProductPage({ params }: Props) {
-    const { slug } = params; 
+  // 2. Buscamos el producto sin usar ninguna URL externa
+  const productRaw = await models.Product.findOne({ slug }).lean();
+
+  if (!productRaw) {
+    notFound();
+  }
+
+  // 3. Serializamos para evitar errores de objetos complejos de MongoDB
+  const product = JSON.parse(JSON.stringify(productRaw)) as Product;
+
+
+
+
+
+// async function getProduct(slug: string): Promise<Product | null> {
+
+//   const res = await fetch(`${baseUrl}/api/products/${slug}`, {
+//       cache: "no-store",
+//     });
+
+//   if (!res.ok) throw new Error("Error al traer productos");
+//         console.log(res)
+//   return res.json();
+// }
+
+// export default async function ProductPage({ params }: Props) {
+//     const { slug } = params; 
     
    
 
-    if (!slug) {
-        console.log("Error no se encontro el slug")
-        notFound()
-    }
+//     if (!slug) {
+//         console.log("Error no se encontro el slug")
+//         notFound()
+//     }
 
-    const product = await getProduct(slug);
+//     const product = await getProduct(slug);
 
-    if (!product) {
-        console.log("Error no se encontro el producto")
-        notFound();
-    }
+//     if (!product) {
+//         console.log("Error no se encontro el producto")
+//         notFound();
+//     }
 
     return (
     <>
