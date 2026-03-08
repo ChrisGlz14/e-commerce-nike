@@ -4,7 +4,7 @@ import {SizeSelector} from "@/components/product/size-selector/SizeSelector";
 import { titleFont } from "@/app/config/fonts";
 import QuantitySelector from "@/components/product/quantity-selector/QuantitySelector";
 import { ProductMobileSlideShow, ProductSlideShow } from "@/components";
-import { Product } from "@/interfaces/product.interface";
+import { Product as ProductModel } from '@/models/product';
 import { connectDB } from "@/lib/mongodb";
 import { models } from "mongoose";
 
@@ -33,7 +33,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
   }
 
   // 3. Serializamos para evitar errores de objetos complejos de MongoDB
-  const product = JSON.parse(JSON.stringify(productRaw)) as Product;
+  const product = JSON.parse(JSON.stringify(productRaw));
 
 
 
