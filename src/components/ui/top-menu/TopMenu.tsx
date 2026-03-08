@@ -58,4 +58,4 @@ const Nav: React.FC = () => {
     </>
   );
 };
-export default Nav;
+export { Nav };

@@ -42,4 +42,4 @@ const ProductGridItem= ({product }: Props) => {
   )
 }
 
-export default ProductGridItem
+export { ProductGridItem };

@@ -1,6 +1,7 @@
 'use client'
+export const dynamic = 'force-dynamic';
 import { Product, Category } from "@/interfaces";
-import ProductGrid from "@/components/products/product-grid/ProductGrid";
+import {ProductGrid} from "@/components/products/product-grid/ProductGrid";
 import { titleFont } from '@/app/config/fonts';
 import { useEffect, useState } from "react";
 

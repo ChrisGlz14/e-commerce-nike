@@ -24,4 +24,4 @@ const FirstPage: React.FC<Props> = ({title, subtitle }) => {
     </section>
   );
 };
-export default FirstPage;
+export { FirstPage };

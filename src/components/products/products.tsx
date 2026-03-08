@@ -149,4 +149,4 @@ const Products: React.FC<ProductsProps> = ({ shoes: initialShoes }) => {
   );
 }
 
-export default Products;
+export { Products };

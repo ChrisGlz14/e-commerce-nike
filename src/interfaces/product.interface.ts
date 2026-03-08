@@ -1,22 +1,28 @@
 
 export interface Product {
-    // id: string;
-    images: string[];
-    description: string;
-    inStock: ProductVariant[];
-    price: number;
-    allSizes: Size[];
-    availableSizes: Size[];
+    _id?: string; // MongoDB usa _id
+    title: string;
     slug: string;
+    description: string;
+    brand: string; // Este campo está en tu DB, agrégalo aquí
+    price: number;
+    images: string[];
+    gender: Category;
     type: ValidTypes;
     tags: string[];
-    title: string;
-    sale: SaleInfo;
-    gender: Category;
+    variants: ProductVariant[]; // Cambiado de 'inStock' a 'variants' para que coincida con la DB
+    isActive: boolean;
+    
+    // Si estos campos no están en todos los documentos de la DB, usa '?'
+    allSizes?: Size[]; 
+    availableSizes?: Size[];
+    sale?: SaleInfo;
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 export interface ProductVariant {
-  size: Size;
+  size: string; // En tu DB el size es un string (ej: "9"), asegúrate de que coincida con tu type Size
   stock: number;
 }
 

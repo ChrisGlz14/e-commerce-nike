@@ -65,5 +65,5 @@ const SizeSelector = ({selectedSize, availableSizes, allSizes}: Props) => {
 
 
 
-export default SizeSelector
+export { SizeSelector };
 

@@ -1,22 +1,18 @@
-import ProductGrid from '@/components/products/product-grid/ProductGrid'
+export const dynamic = 'force-dynamic';
+import {  ProductGrid } from '@/components/products/product-grid/ProductGrid'
 import React from 'react'
+import { connectDB } from '@/lib/mongodb';
+import { Product as ProductModel } from '@/models/product';
 import { Product } from '@/interfaces';
 
 
-async function getProducts(): Promise<Product[]> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`, {
-    cache: "no-store"
-  }); 
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch products");
-  }
 
-  return res.json();
-}
 
 const Shoes = async () => {
-  const products = await getProducts();
+  await connectDB();
+  const productsRaw = await ProductModel.find({ isActive: true }).lean();
+  const products = JSON.parse(JSON.stringify(productsRaw)) as Product[];
   return (
     <ProductGrid products={products}/>
   )

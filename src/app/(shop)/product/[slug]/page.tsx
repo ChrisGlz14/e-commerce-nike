@@ -1,55 +1,71 @@
+export const dynamic = 'force-dynamic';
 import { notFound } from "next/navigation";
-import SizeSelector from "@/components/product/size-selector/SizeSelector";
-import { titleFont } from "@/app/config/fonts";
+import {SizeSelector} from "@/components/product/size-selector/SizeSelector";
+import { inter, titleFont } from "@/app/config/fonts";
 import QuantitySelector from "@/components/product/quantity-selector/QuantitySelector";
 import { ProductMobileSlideShow, ProductSlideShow } from "@/components";
-import { Product } from "@/interfaces/product.interface";
+import { Product as ProductModel } from '@/models/product';
+import { connectDB } from "@/lib/mongodb";
 
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-interface Props {
-     params: {
-        slug : string
-        title: string
-    }
+// interface Props {
+//      params: {
+//         slug : string
+//         title: string
+//     }
+// }
 
-    product : {
-        title: string;
-        description: string;
-        slug : string;
-        price: number;
-    }
+//  interface Product {
+//      title: string;
+//      slug: string;
+//      description : string;
+//      price: number;
+//      brand: string;
+//      images: string[];
+//  }
 
-}
-async function getProduct(product : Product): Promise<Product | null> {
-  const res = await fetch(`${baseUrl}/api/products/${product.slug}`, {
-      cache: "no-store",
-    });
 
-  if (!res.ok) throw new Error("Error al traer productos");
-        console.log(res)
+ export default async function ProductPage({ params }: { params: { slug: string } }) {
+   const { slug } = params;
 
-  console.log("No se hizo el fetch")
-  return res.json();
-}
+   // 1. Conexión directa (Usa la MONGODB_URI que ya tienes en Vercel)
+   await connectDB();
 
-export default async function ProductPage({ params }: Props) {
-    const { slug } = params; 
-    
+   // 2. Buscamos el producto sin usar ninguna URL externa
    
+   const productRaw = await ProductModel.findOne({ slug }).lean();
+   if (!productRaw) {
+     notFound();
+   }
 
-    if (!slug) {
-        console.log("Error no se encontro el slug")
-        notFound()
-    }
+   // 3. Serializamos para evitar errores de objetos complejos de MongoDB
+   const product = JSON.parse(JSON.stringify(productRaw));
 
-    const product = await getProduct({ slug } as Product);
 
-    if (!product) {
-        console.log("Error no se encontro el producto")
-        notFound();
-    }
+
+
+
+//  async function getProduct(slug: string): Promise<Product | null> {
+//    const res = await fetch(`${baseUrl}/api/products/${slug}`, {
+//        cache: "no-store",
+//      });
+//    if (!res.ok) throw new Error("Error al traer productos");
+//          console.log(res)
+//    return res.json();
+//  }
+//  export default async function ProductPage({ params }: Props) {
+//      const { slug } = params;     
+//      if (!slug) {
+//          console.log("Error no se encontro el slug")
+//          notFound()
+//      }
+//      const product = await getProduct(slug);
+//      if (!product) {
+//          console.log("Error no se encontro el producto")
+//          notFound();
+//      }
 
     return (
     <>
