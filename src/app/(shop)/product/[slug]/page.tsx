@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { notFound } from "next/navigation";
 import {SizeSelector} from "@/components/product/size-selector/SizeSelector";
-import { titleFont } from "@/app/config/fonts";
+import { inter, titleFont } from "@/app/config/fonts";
 import QuantitySelector from "@/components/product/quantity-selector/QuantitySelector";
 import { ProductMobileSlideShow, ProductSlideShow } from "@/components";
 import { Product as ProductModel } from '@/models/product';
@@ -11,61 +11,62 @@ import { models } from "mongoose";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
-interface Props {
-     params: {
-        slug : string
-        title: string
-    }
-}
-
-
-export default async function ProductPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-
-  // 1. Conexión directa (Usa la MONGODB_URI que ya tienes en Vercel)
-  await connectDB();
-
-  // 2. Buscamos el producto sin usar ninguna URL externa
-  const productRaw = await models.Product.findOne({ slug }).lean();
-
-  if (!productRaw) {
-    notFound();
-  }
-
-  // 3. Serializamos para evitar errores de objetos complejos de MongoDB
-  const product = JSON.parse(JSON.stringify(productRaw));
-
-
-
-
-
-// async function getProduct(slug: string): Promise<Product | null> {
-
-//   const res = await fetch(`${baseUrl}/api/products/${slug}`, {
-//       cache: "no-store",
-//     });
-
-//   if (!res.ok) throw new Error("Error al traer productos");
-//         console.log(res)
-//   return res.json();
+// interface Props {
+//      params: {
+//         slug : string
+//         title: string
+//     }
 // }
 
-// export default async function ProductPage({ params }: Props) {
-//     const { slug } = params; 
-    
-   
+//  interface Product {
+//      title: string;
+//      slug: string;
+//      description : string;
+//      price: number;
+//      brand: string;
+//      images: string[];
+//  }
 
-//     if (!slug) {
-//         console.log("Error no se encontro el slug")
-//         notFound()
-//     }
 
-//     const product = await getProduct(slug);
+ export default async function ProductPage({ params }: { params: { slug: string } }) {
+   const { slug } = params;
 
-//     if (!product) {
-//         console.log("Error no se encontro el producto")
-//         notFound();
-//     }
+   // 1. Conexión directa (Usa la MONGODB_URI que ya tienes en Vercel)
+   await connectDB();
+
+   // 2. Buscamos el producto sin usar ninguna URL externa
+   const productRaw = await models.Product.findOne({ slug }).lean();
+
+   if (!productRaw) {
+     notFound();
+   }
+
+   // 3. Serializamos para evitar errores de objetos complejos de MongoDB
+   const product = JSON.parse(JSON.stringify(productRaw));
+
+
+
+
+
+//  async function getProduct(slug: string): Promise<Product | null> {
+//    const res = await fetch(`${baseUrl}/api/products/${slug}`, {
+//        cache: "no-store",
+//      });
+//    if (!res.ok) throw new Error("Error al traer productos");
+//          console.log(res)
+//    return res.json();
+//  }
+//  export default async function ProductPage({ params }: Props) {
+//      const { slug } = params;     
+//      if (!slug) {
+//          console.log("Error no se encontro el slug")
+//          notFound()
+//      }
+//      const product = await getProduct(slug);
+//      if (!product) {
+//          console.log("Error no se encontro el producto")
+//          notFound();
+//      }
 
     return (
     <>
