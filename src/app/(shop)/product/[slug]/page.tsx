@@ -6,7 +6,6 @@ import QuantitySelector from "@/components/product/quantity-selector/QuantitySel
 import { ProductMobileSlideShow, ProductSlideShow } from "@/components";
 import { Product as ProductModel } from '@/models/product';
 import { connectDB } from "@/lib/mongodb";
-import { models } from "mongoose";
 
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -35,8 +34,8 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
    await connectDB();
 
    // 2. Buscamos el producto sin usar ninguna URL externa
-   const productRaw = await models.Product.findOne({ slug }).lean();
-
+   
+   const productRaw = await ProductModel.findOne({ slug }).lean();
    if (!productRaw) {
      notFound();
    }
