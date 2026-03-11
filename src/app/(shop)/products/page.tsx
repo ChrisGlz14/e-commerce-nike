@@ -1,38 +1,30 @@
 import { ProductGridItem } from "@/components";
+import { Category, Product } from "@/interfaces/product.interface";
 import { connectDB } from "@/lib/mongodb";
-import { Product } from "@/models/product";
-import Image from "next/image";
+import { Product as ProductModel } from "@/models/product";
 
-interface Props {
-  searchParams: {
-    gender?: string;
+
+interface PageProps {
+  searchParams?: {
+    gender?: Category;
   };
-  Product :{
-    title: string;
-    slug: string;
-    description: string;
-    brand: string; 
-    price: number;
-    images: string[];
-  }
 }
 
-export default async function ProductsPage({ searchParams }: Props) {
+
+
+export default async function ProductsPage({ searchParams }: PageProps) {
 
   await connectDB();
 
   const filter: any = {};
 
-  if (searchParams.gender) filter.gender = searchParams.gender;
-  console.log("filter:", filter);
+  if (searchParams?.gender) filter.gender = searchParams.gender;
 
-  
-
-  const products = await Product.find(filter).lean();
+  const products = JSON.parse(JSON.stringify(await ProductModel.find(filter).lean()));
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 w-full md:w-9/12 mx-auto lg:mt-9 sm:mx-auto">
-      {products.map((product: any) => (
+      {products.map((product: Product) => (
         <ProductGridItem
           key={product.slug}
           product={product}
