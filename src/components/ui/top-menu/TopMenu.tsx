@@ -5,9 +5,13 @@ import { CiSearch } from "react-icons/ci";
 import { IoBag } from "react-icons/io5";
 import { SiNike } from "react-icons/si";
 
+interface Props {
+  gender: string;
+}
 
 
-const Nav: React.FC = () => {
+
+const Nav: React.FC<Props> = ({ gender }) => {
 
 
   const openSideMenu = useMenuSideState(state => state.openSideMenu)
@@ -26,10 +30,10 @@ const Nav: React.FC = () => {
           
           {/* Menu central */}
           <ul className="hidden sm:block gap-4 p-4 justify-between space-x-6">
-              <Link className="transition-all hover:bg-black hover:bg-opacity-40 rounded-md p-2" href="/category/men">Hombre</Link>
-              <Link className="transition-all hover:bg-black hover:bg-opacity-40 rounded-md p-2" href="/category/women">Mujer</Link>
-              <Link className="transition-all hover:bg-black hover:bg-opacity-40 rounded-md p-2" href="/category/sales">Ofertas</Link>
-              <Link className="transition-all hover:bg-black hover:bg-opacity-40 rounded-md p-2" href="/category/kid">Niño</Link>
+              <Link className="transition-all hover:bg-black hover:bg-opacity-40 rounded-md p-2" href="/products?gender=men">Hombre</Link>
+              <Link className="transition-all hover:bg-black hover:bg-opacity-40 rounded-md p-2" href="/products?gender=women">Mujer</Link>
+              <Link className="transition-all hover:bg-black hover:bg-opacity-40 rounded-md p-2" href="/products?gender=unisex">Ofertas</Link>
+              <Link className="transition-all hover:bg-black hover:bg-opacity-40 rounded-md p-2" href="/products?gender=kid">Niño</Link>
           </ul>
 
           {/* Cart section btn */}
