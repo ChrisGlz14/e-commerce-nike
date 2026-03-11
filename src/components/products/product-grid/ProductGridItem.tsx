@@ -10,12 +10,13 @@ interface Props {
 
 
 
-const ProductGridItem= ({product }: Props) => {
+const ProductGridItem = ({ product }: Props) => {
 
   const [mouseOverChangeImg, setMouseOverChangeImg] = useState(
     product.images?.[0] || "/placeholder.png"
   );
 
+  
 
   return (
     <div className='overflow-hidden flex flex-col m-3'>

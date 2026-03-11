@@ -1,7 +1,7 @@
 export { Nav } from "./ui/top-menu/TopMenu";
 export { PageNotFound } from "./ui/not-found/PageNotFound";
 export { SideMenu } from "./ui/side-menu/SideMenu";
-export { FirstPage } from "./ui/title/FirstPage";
+import {FirstPage} from "@/components/ui/title/FirstPage";
 export { Products } from "./products/products";
 export { ProductGrid } from "./products/product-grid/ProductGrid";
 export { ProductGridItem } from "./products/product-grid/ProductGridItem";

@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import {SideMenu} from "@/components/ui/side-menu/SideMenu";
 
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,7 +22,8 @@ export default function ShopLayout({
     <html lang="en" className="overflow-x-hidden">
       <body className={inter.className}>
         
-      <Nav />
+        
+      <Nav gender=""/>
       <SideMenu  />
         {children}
         

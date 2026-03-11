@@ -1,4 +1,4 @@
-
+import React from "react";
 interface Props {
   title: string;
   subtitle?: string;
@@ -13,9 +13,9 @@ const FirstPage: React.FC<Props> = ({title, subtitle }) => {
             <header className="flex justify-center flex-col">
               {/* <h2 className="text-white text-5xl font-bold text-center pt-40 text-[7rem] ">{title}</h2> */}
           {
-            // subtitle && (
-            //   // <h2 className="text-white text-5xl font-bold text-center pt-52 text-[3rem]">{subtitle}</h2>
-            // )
+             subtitle && (
+                <h2 className="text-white text-5xl font-bold text-center pt-52 text-[3rem]">{subtitle}</h2>
+             )
           }
             </header>
           </div>
@@ -24,4 +24,4 @@ const FirstPage: React.FC<Props> = ({title, subtitle }) => {
     </section>
   );
 };
-export { FirstPage };
+export {FirstPage};

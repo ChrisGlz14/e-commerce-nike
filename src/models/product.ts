@@ -1,5 +1,7 @@
 import { model, models, Schema } from "mongoose";
 
+
+
 const productSchema = new Schema(
   {
     title: String,
@@ -21,6 +23,6 @@ const productSchema = new Schema(
   },
   { timestamps: true }
 );
-
+const filter: any = { isActive: true };
 const Product = models.Product || model('Product', productSchema);
 export { Product };

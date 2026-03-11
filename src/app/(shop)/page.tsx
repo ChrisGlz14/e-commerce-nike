@@ -9,10 +9,7 @@ const Home = () => {
 
   return (
     <>
-      <FirstPage 
-        title="NIKE"
-        subtitle="SHOP"
-      />
+      <FirstPage title="Nike Store" subtitle="JUST DO IT" />
       <Products shoes={shoesInitialData}/>
     </>
   );
