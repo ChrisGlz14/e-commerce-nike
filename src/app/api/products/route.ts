@@ -19,13 +19,3 @@ export async function GET() {
     );
   }
 }
-
-
-
-
-// export async function POST(request: Request) {
-//       await connectDB()
-//       const data = await request.json()
-//       const produts = await Product.create( data )
-//       return NextResponse.json(produts)
-//   }
