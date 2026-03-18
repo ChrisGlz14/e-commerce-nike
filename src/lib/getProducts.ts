@@ -1,4 +1,4 @@
-import { Product } from "@/interfaces";
+import { Product } from "@/hooks/interfaces";
 
 export async function getProducts(): Promise<Product[]> {
   try {

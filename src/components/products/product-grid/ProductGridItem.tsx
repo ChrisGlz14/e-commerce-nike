@@ -1,5 +1,5 @@
 'use client'
-import { Product } from '@/interfaces'
+import { Product } from '@/hooks/interfaces'
 import Image from 'next/image'
 import Link from 'next/link';
 import React, { useState } from 'react'

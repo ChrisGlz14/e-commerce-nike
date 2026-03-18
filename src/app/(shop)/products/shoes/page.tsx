@@ -3,7 +3,7 @@ import {  ProductGrid } from '@/components/products/product-grid/ProductGrid'
 import React from 'react'
 import { connectDB } from '@/lib/mongodb';
 import { Product as ProductModel } from '@/models/product';
-import { Product } from '@/interfaces';
+import { Product } from '@/hooks/interfaces';
 
 
 

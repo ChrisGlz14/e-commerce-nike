@@ -1,5 +1,5 @@
 import { ProductGridItem } from "@/components";
-import { Category, Product } from "@/interfaces/product.interface";
+import { Category, Product } from "@/hooks/interfaces/product.interface";
 import { connectDB } from "@/lib/mongodb";
 import { Product as ProductModel } from "@/models/product";
 

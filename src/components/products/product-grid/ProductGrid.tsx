@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Product } from '@/interfaces';
+import { Product } from '@/hooks/interfaces';
 import {ProductGridItem} from './ProductGridItem';
 import { motion } from 'framer-motion';
 

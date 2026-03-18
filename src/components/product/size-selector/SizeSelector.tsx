@@ -1,4 +1,4 @@
-import type { Size } from '@/interfaces'
+import type { Size } from '@/hooks/interfaces'
 import clsx from 'clsx'
 
 import React from 'react'

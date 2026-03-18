@@ -4,6 +4,8 @@ import Link from "next/link";
 import { CiSearch } from "react-icons/ci";
 import { IoBag } from "react-icons/io5";
 import { SiNike } from "react-icons/si";
+import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 
 interface Props {
   gender: string;
@@ -11,10 +13,15 @@ interface Props {
 
 
 
-const Nav: React.FC<Props> = ({ gender }) => {
+const Nav: React.FC<Props> = () => {
 
+  const router = useRouter();
+  
 
-  const openSideMenu = useMenuSideState(state => state.openSideMenu)
+  const menu = useMenuSideState();
+  const openSideMenu = menu.openSideMenu;
+  
+  const { logout, isAuthenticated } = useAuth();
 
   return (
     <>
@@ -43,19 +50,30 @@ const Nav: React.FC<Props> = ({ gender }) => {
             </Link>
               <div className="relative flex justify-center items-center"> 
                 <span className="absolute text-white text-xs rounded-full px-1 -right-2 top-2 font-bold bg-blue-800">
-                  4
+                  0
                 </span>
                 <IoBag className="search-icon text-2xl cursor-pointer" />
               </div>
             
+              <Link href="/register"> 
+              <button className="loginBtn p-2 rounded-md transition-all hover:bg-black hover:bg-opacity-40  flex items-center justify-center m-auto">
+                Registrarse
+              </button>
+              </Link>
+    
+        
 
-            <button className="p-2 rounded-md transition-all hover:bg-black hover:bg-opacity-40  flex items-center justify-center m-auto"
-            onClick={openSideMenu}>
+          { openSideMenu && (
+            <button 
+              className="p-2 rounded-md transition-all hover:bg-black hover:bg-opacity-40 flex items-center justify-center m-auto"
+              onClick={openSideMenu}
+            >
               Menu
             </button>
-          </div>
+)}
+          
 
-
+</div>
 
         </nav>
       </header>

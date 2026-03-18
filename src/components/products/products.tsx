@@ -63,11 +63,10 @@ const Products: React.FC<ProductsProps> = ({ shoes: initialShoes }) => {
   const [shoes, setShoes] = React.useState(initialShoes || []);
 
   useEffect(() => {
-    // Si no vinieron datos del server, los buscamos
+
     if (!initialShoes || initialShoes.length === 0) {
       fetchShoes().then(data => {
-        // IMPORTANTE: Asegúrate de que 'data' sea el array
-        // Si tu API devuelve { products: [...] }, usa data.products
+
         setShoes(Array.isArray(data) ? data : []);
       });
     }
