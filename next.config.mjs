@@ -8,6 +8,11 @@ const nextConfig = {
          hostname: "nikearprod.vtexassets.com",
          pathname: "/assets/**",
       },
+      {
+      protocol: "https",
+      hostname: "nikearprod.vtexassets.com",
+      pathname: "/arquivos/**",
+     }
     ],
   },
 };

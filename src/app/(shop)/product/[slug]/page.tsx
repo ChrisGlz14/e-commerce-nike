@@ -32,7 +32,6 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
     {/* TENGO 1500 problemas con el sliideShow */}
         <div className="grid grid-cols-1 md:grid-cols-3 w-full md:w-9/12 mx-auto lg:mt-9  sm:mx-auto ">
                 {/* Slider */}
-                <div className="">hola</div>
 
                 {/* Mobile SlideShow */}
 
