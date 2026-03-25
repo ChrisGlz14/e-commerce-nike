@@ -88,7 +88,7 @@ const Products: React.FC<ProductsProps> = ({ shoes: initialShoes }) => {
       <div className='grid grid-cols-2 grid-rows-2 items-center gap-12'>
         {shoes.map(shoe => (
           <React.Fragment key={shoe.slug}>
-          <Link key={shoe._id} href={`/product/${shoe.slug}`} className="col-start-1 row-span-3 justify-self-end self-baseline h-[600px] relative">
+          <Link key={shoe._id} href="https://e-commerce-nike-liart.vercel.app/products?gender=men" className="col-start-1 row-span-3 justify-self-end self-baseline h-[600px] relative">
             <motion.div
               initial="offscreen"
               whileInView="onscreen2"
@@ -106,7 +106,7 @@ const Products: React.FC<ProductsProps> = ({ shoes: initialShoes }) => {
           </Link>
 
           {/* 2th img */}  
-          <Link href={`/product/${shoe.slug}`}>
+          <Link href="https://e-commerce-nike-liart.vercel.app/products?gender=women">
           <motion.div
           initial="offscreen"
           whileInView="onscreen2"
@@ -123,7 +123,7 @@ const Products: React.FC<ProductsProps> = ({ shoes: initialShoes }) => {
           </motion.div>
           </Link>
 
-          <Link href={`/product/${shoe.slug}`}>
+          <Link href="https://e-commerce-nike-liart.vercel.app/products?gender=unisex">
           <motion.div
           initial="offscreen"
           whileInView="onscreen2"
