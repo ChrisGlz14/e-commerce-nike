@@ -1,5 +1,6 @@
 'use client'
 import { Product } from '@/hooks/interfaces'
+import { useCartStore } from '@/store/cart/cart-store'
 import Image from 'next/image'
 import Link from 'next/link';
 import React, { useState } from 'react'
@@ -16,6 +17,8 @@ const ProductGridItem = ({ product }: Props) => {
   const [mouseOverChangeImg, setMouseOverChangeImg] = useState(
     product.images?.[0] || "/placeholder.png"
   );
+
+  const addItem = useCartStore((state) => state.addItem);
 
   
 
@@ -39,7 +42,12 @@ const ProductGridItem = ({ product }: Props) => {
                   </Link>
                 </div>
         <span>${product.price}</span>
-                
+        <button
+          onClick={addItem}
+          className="mt-2 w-full bg-black text-white text-sm py-1 px-3 rounded-md hover:bg-gray-900 transition-all"
+        >
+          Agregar al carrito
+        </button>
     </div>
   )
 }

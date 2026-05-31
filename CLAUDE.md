@@ -1,0 +1,1 @@
+Es una app tipo ecommerce que busca simular una tienda online

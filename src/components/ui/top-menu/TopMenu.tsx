@@ -1,5 +1,6 @@
 "use client";
 import { useMenuSideState } from "@/store/ui/ui-store";
+import { useCartStore } from "@/store/cart/cart-store";
 import Link from "next/link";
 import { CiSearch } from "react-icons/ci";
 import { IoBag } from "react-icons/io5";
@@ -20,6 +21,7 @@ const Nav: React.FC<Props> = () => {
 
   const menu = useMenuSideState();
   const openSideMenu = menu.openSideMenu;
+  const totalItems = useCartStore((state) => state.totalItems);
   
   const { logout, isAuthenticated } = useAuth();
 
@@ -50,7 +52,7 @@ const Nav: React.FC<Props> = () => {
             </Link>
               <div className="relative flex justify-center items-center"> 
                 <span className="absolute text-white text-xs rounded-full px-1 -right-2 top-2 font-bold bg-blue-800">
-                  0
+                  {totalItems}
                 </span>
                 <IoBag className="search-icon text-2xl cursor-pointer" />
               </div>
