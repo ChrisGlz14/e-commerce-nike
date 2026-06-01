@@ -1,5 +1,20 @@
 import { model, models, Schema } from "mongoose";
 
+export interface IProduct {
+  _id: string;
+  title: string;
+  slug: string;
+  description: string;
+  brand: string;
+  price: number;
+  images: string[];
+  gender: string;
+  type: string;
+  tags: string[];
+  variants: { size: string; stock: number }[];
+  isActive: boolean;
+}
+
 
 
 const productSchema = new Schema(

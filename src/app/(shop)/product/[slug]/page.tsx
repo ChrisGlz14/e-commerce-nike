@@ -1,28 +1,22 @@
 
 export const dynamic = 'force-dynamic';
 import { notFound } from "next/navigation";
-import {SizeSelector} from "@/components/product/size-selector/SizeSelector";
-import { inter, titleFont } from "@/app/config/fonts";
+import { titleFont } from "@/app/config/fonts";
 import QuantitySelector from "@/components/product/quantity-selector/QuantitySelector";
 import { ProductMobileSlideShow, ProductSlideShow } from "@/components";
-import { Product as ProductModel } from '@/models/product';
+import { Product as ProductModel, IProduct } from '@/models/product';
 import { connectDB } from "@/lib/mongodb";
 import AddToCartBtn from "../../products/shoes/addToCartBtn";
 
+export default async function ProductPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
 
-//const baseUrl = process.env.BASE_URL || "http://localhost:3000";
-const baseUrl = process.env.MONGODB_URI;
+  await connectDB();
+  const product = await ProductModel.findOne({ slug }).lean<IProduct>();
 
- export default async function ProductPage({ params }: { params: { slug: string } }) {
-   const { slug } = params;
-  
-   await connectDB();
-
-   const product = await fetch(`${baseUrl}/api/products/${slug}`).then((res) => res.json());
-
-   if (!product) {
-     notFound();
-   }
+  if (!product) {
+    notFound();
+  }
 
     return (
     <>
