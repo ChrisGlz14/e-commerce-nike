@@ -1,3 +1,4 @@
+
 export const dynamic = 'force-dynamic';
 import { notFound } from "next/navigation";
 import {SizeSelector} from "@/components/product/size-selector/SizeSelector";
@@ -6,18 +7,20 @@ import QuantitySelector from "@/components/product/quantity-selector/QuantitySel
 import { ProductMobileSlideShow, ProductSlideShow } from "@/components";
 import { Product as ProductModel } from '@/models/product';
 import { connectDB } from "@/lib/mongodb";
+import AddToCartBtn from "../../products/shoes/addToCartBtn";
 
 
-const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-
+const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 
  export default async function ProductPage({ params }: { params: { slug: string } }) {
    const { slug } = params;
-   const GET = await fetch(`${baseUrl}/api/products/${slug}`, {
-     cache: 'no-store',
-   });
+  
 
-   
+   const product = await fetch(`${baseUrl}/api/products/${slug}`).then((res) => res.json());
+
+   if (!product) {
+     notFound();
+   }
 
     return (
     <>
@@ -55,7 +58,7 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
                     {/* Quantity btn */}
                     <QuantitySelector quantity={1} />
                     <div className="place-self-end w-full mt-6">
-                        <button  className="bg-white text-black rounded-full p-4 font-bold w-full">Agregar al carrito</button> 
+                        <AddToCartBtn className="bg-white text-black rounded-full p-4 font-bold w-full" productId={product._id}></AddToCartBtn> 
                     </div>
             </div>
         </div>
