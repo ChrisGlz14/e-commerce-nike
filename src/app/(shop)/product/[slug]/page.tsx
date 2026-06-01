@@ -10,7 +10,8 @@ import { connectDB } from "@/lib/mongodb";
 import AddToCartBtn from "../../products/shoes/addToCartBtn";
 
 
-const baseUrl = process.env.BASE_URL || "http://localhost:3000";
+//const baseUrl = process.env.BASE_URL || "http://localhost:3000";
+const baseUrl = process.env.MONGODB_URI;
 
  export default async function ProductPage({ params }: { params: { slug: string } }) {
    const { slug } = params;
@@ -47,9 +48,7 @@ const baseUrl = process.env.BASE_URL || "http://localhost:3000";
             <div className="grid col-span-1 place-self-center justify-center items-center px-4 md:px-14">
                     {/* title */}
                     <h1 className={`text-2xl md:text-3xl lg:mt-0 lg:text-3xl antialiased mt-6 ${titleFont.className}`}>{product?.title}</h1>
-                    {/* Size */}
-                    {/* <SizeSelector selectedSize={product?.availableSizes]} availableSizes={product.availableSizes} allSizes={product.allSizes}/> */}
-                    {/* Price */}
+                    
                     <h2 className="text-lg lg:text-xl font-bold mt-6">${product?.price}</h2>
                     {/* Description */}
                         <h3 className="text-lg font-bold mt-6">Descripcion</h3>
