@@ -16,6 +16,7 @@ const baseUrl = process.env.MONGODB_URI;
  export default async function ProductPage({ params }: { params: { slug: string } }) {
    const { slug } = params;
   
+   await connectDB();
 
    const product = await fetch(`${baseUrl}/api/products/${slug}`).then((res) => res.json());
 
