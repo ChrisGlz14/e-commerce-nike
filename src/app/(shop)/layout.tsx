@@ -1,39 +1,12 @@
-import type { Metadata } from "next";
-import {Nav} from "@/components/ui/top-menu/TopMenu";
-import { Inter } from "next/font/google";
-import "@/app/globals.css";
-import {SideMenu} from "@/components/ui/side-menu/SideMenu";
-import { Providers } from "../providers";
+import { Nav } from "@/components/ui/top-menu/TopMenu";
+import { SideMenu } from "@/components/ui/side-menu/SideMenu";
 
-
-
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Nike E-Commerce",
-  description: "Tienda de zapatos de marca Nike E-Commerce",
-};
-
-export default function ShopLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function ShopLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="overflow-x-hidden">
-      <body className={inter.className}>
-        
-        <Providers>
-        
-        <Nav gender=""/>
-        <SideMenu  />
-          {children}
-        </Providers>
-      
-      </body>
-
-      
-      
-    </html>
+    <>
+      <Nav gender="" />
+      <SideMenu />
+      {children}
+    </>
   );
 }
