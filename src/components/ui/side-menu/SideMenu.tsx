@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 import { useMenuSideState } from '@/store/ui/ui-store'
 import {
   IoCloseOutline, IoPersonOutline, IoSearchOutline, IoTicketOutline,
@@ -133,6 +134,8 @@ const adminItems: { view: Exclude<View, 'main'>; icon: React.ReactNode; label: s
 
 const SideMenu: React.FC = () => {
   const [activeView, setActiveView] = useState<View>('main')
+  const { status } = useSession()
+  const isAuthenticated = status === 'authenticated'
 
   const menuIsOpen = useMenuSideState(state => state.menuIsOpen)
   const closeSideMenu = useMenuSideState(state => state.closeSideMenu)
@@ -198,52 +201,75 @@ const SideMenu: React.FC = () => {
         >
           {/* Main view */}
           <div className="w-1/2 px-5 overflow-y-auto">
-            {/* Search */}
-            <div className="relative mt-6">
-              <IoSearchOutline size={20} className="absolute top-2 left-2 text-black" />
-              <input
-                type="text"
-                placeholder="Search"
-                className="w-full pl-10 focus:outline-none focus:border-red-500 border-b-2 border-gray-200 rounded-md bg-gray-100 h-10 text-black"
-              />
-            </div>
+            {isAuthenticated ? (
+              <>
+                {/* Search */}
+                <div className="relative mt-6">
+                  <IoSearchOutline size={20} className="absolute top-2 left-2 text-black" />
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    className="w-full pl-10 focus:outline-none focus:border-red-500 border-b-2 border-gray-200 rounded-md bg-gray-100 h-10 text-black"
+                  />
+                </div>
 
-            {/* User links */}
-            <div className="mt-8 flex flex-col gap-1">
-              {menuItems.map(({ view, icon, label }) => (
-                <button
-                  key={view}
-                  onClick={() => goTo(view)}
-                  className="flex items-center justify-between w-full p-3 hover:bg-gray-100 rounded-xl transition-all text-left"
+                {/* User links */}
+                <div className="mt-8 flex flex-col gap-1">
+                  {menuItems.map(({ view, icon, label }) => (
+                    <button
+                      key={view}
+                      onClick={() => goTo(view)}
+                      className="flex items-center justify-between w-full p-3 hover:bg-gray-100 rounded-xl transition-all text-left"
+                    >
+                      <div className="flex items-center gap-3 text-black">
+                        {icon}
+                        <span className="text-xl">{label}</span>
+                      </div>
+                      <IoChevronForwardOutline size={20} className="text-gray-400" />
+                    </button>
+                  ))}
+                </div>
+
+                {/* Separator */}
+                <div className="w-full h-px bg-gray-200 my-6" />
+
+                {/* Admin links */}
+                <div className="flex flex-col gap-1">
+                  {adminItems.map(({ view, icon, label }) => (
+                    <button
+                      key={view}
+                      onClick={() => goTo(view)}
+                      className="flex items-center justify-between w-full p-3 hover:bg-gray-100 rounded-xl transition-all text-left"
+                    >
+                      <div className="flex items-center gap-3 text-black">
+                        {icon}
+                        <span className="text-xl">{label}</span>
+                      </div>
+                      <IoChevronForwardOutline size={20} className="text-gray-400" />
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="flex flex-col gap-3 mt-8">
+                <Link
+                  href="/register"
+                  onClick={closeSideMenu}
+                  className="p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all"
                 >
-                  <div className="flex items-center gap-3 text-black">
-                    {icon}
-                    <span className="text-xl">{label}</span>
-                  </div>
-                  <IoChevronForwardOutline size={20} className="text-gray-400" />
-                </button>
-              ))}
-            </div>
-
-            {/* Separator */}
-            <div className="w-full h-px bg-gray-200 my-6" />
-
-            {/* Admin links */}
-            <div className="flex flex-col gap-1">
-              {adminItems.map(({ view, icon, label }) => (
-                <button
-                  key={view}
-                  onClick={() => goTo(view)}
-                  className="flex items-center justify-between w-full p-3 hover:bg-gray-100 rounded-xl transition-all text-left"
+                  <p className="font-semibold text-black">Registrarse</p>
+                  <p className="text-sm text-gray-500 mt-1">Crea una cuenta nueva</p>
+                </Link>
+                <Link
+                  href="/auth/login"
+                  onClick={closeSideMenu}
+                  className="p-4 bg-black text-white rounded-xl hover:bg-gray-800 transition-all"
                 >
-                  <div className="flex items-center gap-3 text-black">
-                    {icon}
-                    <span className="text-xl">{label}</span>
-                  </div>
-                  <IoChevronForwardOutline size={20} className="text-gray-400" />
-                </button>
-              ))}
-            </div>
+                  <p className="font-semibold">Iniciar sesión</p>
+                  <p className="text-sm text-gray-400 mt-1">Accede a tu cuenta</p>
+                </Link>
+              </div>
+            )}
           </div>
 
           {/* Sub view */}
